@@ -1,0 +1,442 @@
+﻿Файл проекта содержит ToolsVersion="12.0". Возможно, этот набор инструментов неизвестен или отсутствует (в этом случае проблему можно устранить, установив подходящую версию MSBuild), либо для данной сборки определено конкретное значение ToolsVersion в параметрах политики. Проект обрабатывается как имеющий ToolsVersion="4.0". Дополнительные сведения см. по ссылке http://go.microsoft.com/fwlink/?LinkId=291333.
+cl : командная строка warning D9030: "/Gm" несовместим с многопроцессорной обработкой; ключ /MP игнорируется
+  TypeData.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.cpp(23): warning C4244: return: преобразование "unsigned __int64" в "HASH_VAL", возможна потеря данных
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  String.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+e:\repository\somesmalllibrary\exstring.h(46): warning C4005: CHAR_TYPE: изменение макроопределения
+          c:\users\andr\documents\visual studio 2012\projects\script\script\additionallib.h(12): см. предыдущее определение "CHAR_TYPE"
+e:\repository\somesmalllibrary\exstring.h(1121): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(251): см. объявление "strnicmp"
+e:\repository\somesmalllibrary\exstring.h(1130): warning C4996: 'wcsnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsnicmp. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(408): см. объявление "wcsnicmp"
+e:\repository\somesmalllibrary\exstring.h(1139): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(249): см. объявление "stricmp"
+e:\repository\somesmalllibrary\exstring.h(1148): warning C4996: 'wcsicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsicmp. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(407): см. объявление "wcsicmp"
+e:\repository\somesmalllibrary\exstring.h(1154): warning C4996: 'strupr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strupr. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(255): см. объявление "strupr"
+e:\repository\somesmalllibrary\exstring.h(1159): warning C4996: 'wcsupr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsupr. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(413): см. объявление "wcsupr"
+e:\repository\somesmalllibrary\exstring.h(1164): warning C4996: 'strlwr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strlwr. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(250): см. объявление "strlwr"
+e:\repository\somesmalllibrary\exstring.h(1169): warning C4996: 'wcslwr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcslwr. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(412): см. объявление "wcslwr"
+e:\repository\somesmalllibrary\exstring.h(1174): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(115): см. объявление "strcat"
+e:\repository\somesmalllibrary\exstring.h(1179): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(279): см. объявление "wcscat"
+e:\repository\somesmalllibrary\exstring.h(1184): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(182): см. объявление "strncat"
+e:\repository\somesmalllibrary\exstring.h(1189): warning C4996: 'wcsncat': This function or variable may be unsafe. Consider using wcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(310): см. объявление "wcsncat"
+e:\repository\somesmalllibrary\exstring.h(1195): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(191): см. объявление "strncpy"
+e:\repository\somesmalllibrary\exstring.h(1200): warning C4996: 'wcsncpy': This function or variable may be unsafe. Consider using wcsncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(317): см. объявление "wcsncpy"
+e:\repository\somesmalllibrary\exstring.h(1205): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(110): см. объявление "strcpy"
+e:\repository\somesmalllibrary\exstring.h(1210): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(288): см. объявление "wcscpy"
+e:\repository\somesmalllibrary\exstring.h(1216): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(241): см. объявление "strdup"
+e:\repository\somesmalllibrary\exstring.h(1221): warning C4996: 'wcsdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsdup. See online help for details.
+          c:\program files (x86)\mvs12\vc\include\string.h(397): см. объявление "wcsdup"
+e:\repository\somesmalllibrary\exstring.h(670): warning C4244: инициализация: преобразование "__int64" в "long double", возможна потеря данных
+          e:\repository\somesmalllibrary\exstring.h(595): см. ссылку на создание экземпляров функции шаблон при компиляции "STR_STAT _d_StringToNumber<true,true,TypeNumber,TypeChar>(TypeNumber *,const TypeChar *,size_t,unsigned char)"
+          with
+          [
+              TypeNumber=ZELLI_DOUBLE,
+              TypeChar=INTERNAL_CHAR
+          ]
+          c:\users\andr\documents\visual studio 2012\projects\script\script\string.cpp(178): см. ссылку на создание экземпляров функции шаблон при компиляции "STR_STAT StringToNumber<INTERNAL_CHAR,ZELLI_DOUBLE>(TypeNumber *,const TypeChar *,size_t,unsigned char)"
+          with
+          [
+              TypeNumber=ZELLI_DOUBLE,
+              TypeChar=INTERNAL_CHAR
+          ]
+  StackLocalVar.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  Opcode.cpp
+  ObjectClass.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\objectclass.cpp(172): warning C4800: LPOBJECT_HEADER: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  NativeMethod.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  Class.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(84): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  Method.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\method.cpp(47): warning C4244: инициализация: преобразование "float" в "unsigned int", возможна потеря данных
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  main.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\main.cpp(38): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "GLOBAL_SCOPE_CLASS::INDEX_OBJ_ELEMENT GLOBAL_SCOPE_CLASS::HASH_ELEMENT::IndexByKey(LPHEADER_STRING,GLOBAL_SCOPE_CLASS::INDEX_OBJ_ELEMENT)"
+  LoadFromFile.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\loadfromfile.cpp(511): warning C4102: lblBadMethodIndex: неиспользованная метка
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  InitStatic.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "GLOBAL_SCOPE_CLASS::INDEX_OBJ_ELEMENT GLOBAL_SCOPE_CLASS::HASH_ELEMENT::IndexByKey(LPHEADER_STRING,GLOBAL_SCOPE_CLASS::INDEX_OBJ_ELEMENT)"
+  GlobalScope.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\globalscope.cpp(72): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  ExceptionHandler.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\exceptionhandler.cpp(38): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\exceptionhandler.cpp(41): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\exceptionhandler.cpp(67): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\exceptionhandler.cpp(73): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\exceptionhandler.cpp(78): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\exceptionhandler.cpp(93): warning C4800: LPHEADER_STRING: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  Context.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\context.cpp(446): warning C4800: const LPHEADER_EXCEPTION: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+c:\users\andr\documents\visual studio 2012\projects\script\script\inlinetypedata.h(17): warning C4800: LPHEADER_STRING : принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+          c:\users\andr\documents\visual studio 2012\projects\script\script\context.cpp(292): см. ссылку на создание экземпляров функции шаблон при компиляции "_INLINE_OPERATORS<T>::_INLINE_OPERATORS<LPHEADER_STRING>(A)"
+          with
+          [
+              T=INSIDE_DATA,
+              A=LPHEADER_STRING
+          ]
+          c:\users\andr\documents\visual studio 2012\projects\script\script\context.cpp(292): см. ссылку на создание экземпляров функции шаблон при компиляции "_INLINE_OPERATORS<T>::_INLINE_OPERATORS<LPHEADER_STRING>(A)"
+          with
+          [
+              T=INSIDE_DATA,
+              A=LPHEADER_STRING
+          ]
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "GLOBAL_SCOPE_CLASS::INDEX_OBJ_ELEMENT GLOBAL_SCOPE_CLASS::HASH_ELEMENT::IndexByKey(LPHEADER_STRING,GLOBAL_SCOPE_CLASS::INDEX_OBJ_ELEMENT)"
+  ConstScope.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  ClassScope.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  Bool.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\program files (x86)\mvs12\vc\include\xstddef(226): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  AcelerateInterator.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::ReadMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(43): см. объявление "CLASS_SCOPE::ReadMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::WriteMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(45): см. объявление "CLASS_SCOPE::WriteMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::RemoveMember" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(47): см. объявление "CLASS_SCOPE::RemoveMember"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorReadByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(51): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(50): см. объявление "CLASS_SCOPE::OperatorReadByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorWriteByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(55): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(54): см. объявление "CLASS_SCOPE::OperatorWriteByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::OperatorRemoveByIndex" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(59): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(58): см. объявление "CLASS_SCOPE::OperatorRemoveByIndex"
+c:\users\andr\documents\visual studio 2012\projects\script\script\string.h(131): warning C4250: STRING_CLASS: наследуется "CLASS_SCOPE::CLASS_SCOPE::EnumKey" через превосходство
+          c:\users\andr\documents\visual studio 2012\projects\script\script\classscope.h(61): см. объявление "CLASS_SCOPE::EnumKey"
+c:\users\andr\documents\visual studio 2012\projects\script\script\dynamicarray.h(156): warning C4506: нет определения для подставляемой функции "STRING_CLASS::INDEX_OBJ_ELEMENT STRING_CLASS::_HASH_ELEM_STRING::IndexByKey(const LPHEADER_STRING,STRING_CLASS::INDEX_OBJ_ELEMENT)"
+  Создание кода...
+AcelerateInterator.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/OPT:LBR"
+  Script.vcxproj -> C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Debug\Script.exe

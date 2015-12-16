@@ -1,0 +1,61 @@
+﻿Построение начато 24.04.2015 0:52:39.
+     1>Проект "C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Script\Script.vcxproj" в узле 2 (целевые объекты Build).
+       Файл проекта содержит ToolsVersion="12.0". Возможно, этот набор инструментов неизвестен или отсутствует (в этом случае проблему можно устранить, установив подходящую версию MSBuild), либо для данной сборки определено конкретное значение ToolsVersion в параметрах политики. Проект обрабатывается как имеющий ToolsVersion="4.0". Дополнительные сведения см. по ссылке http://go.microsoft.com/fwlink/?LinkId=291333.
+     1>ClCompile:
+         C:\Program Files (x86)\MSVS12\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /MP /O2 /Ob2 /Oi /Ot /Oy /GT /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MD /Zp1 /GS- /Gy /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AcelerateInterator.cpp Context.cpp ExceptionHandler.cpp GlobalScope.cpp LoadFromFile.cpp Method.cpp Object.cpp ObjectClass.cpp String.cpp TypeData.cpp main.cpp
+         AcelerateInterator.cpp
+         Context.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (Context.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (AcelerateInterator.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+         ExceptionHandler.cpp
+         GlobalScope.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (ExceptionHandler.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (GlobalScope.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+         LoadFromFile.cpp
+         Method.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (Method.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (LoadFromFile.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+         Object.cpp
+         ObjectClass.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (Object.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (ObjectClass.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+         String.cpp
+         TypeData.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (TypeData.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (String.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+         main.cpp
+     1>String.cpp(455): warning C4805: |: небезопасное смешение типа "CHECK_USES" и типа "bool" в операции
+     1>c:\users\andr\documents\visual studio 2012\projects\script\script\TypeData.h(21): warning C4005: MEM_FREE: изменение макроопределения (main.cpp)
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+       Link:
+         C:\Program Files (x86)\MSVS12\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Script.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Script.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Script.lib" /MACHINE:X86 /SAFESEH Release\AcelerateInterator.obj
+         Release\Context.obj
+         Release\ExceptionHandler.obj
+         Release\GlobalScope.obj
+         Release\LoadFromFile.obj
+         Release\main.obj
+         Release\Method.obj
+         Release\Object.obj
+         Release\ObjectClass.obj
+         Release\Opcode.obj
+         Release\StackLocalVar.obj
+         Release\String.obj
+         Release\TypeData.obj
+         Создание кода
+         Создание кода завершено
+         Script.vcxproj -> C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Script.exe
+     1>Построение проекта "C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Script\Script.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:11.29

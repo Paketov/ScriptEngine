@@ -1,0 +1,10 @@
+﻿  Keywords.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\hashtable.h(7): fatal error C1083: Не удается открыть файл включение: ExHashTable.h: No such file or directory
+  Compiler.cpp
+c:\users\andr\documents\visual studio 2012\projects\script\script\typedata.h(25): warning C4005: MEM_FREE: изменение макроопределения
+          c:\program files (x86)\windows kits\8.0\include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+c:\users\andr\documents\visual studio 2012\projects\script\script\hashtable.h(7): fatal error C1083: Не удается открыть файл включение: ExHashTable.h: No such file or directory
+  Opcode.cpp
+  Создание кода...

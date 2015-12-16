@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="OS">
+      <UniqueIdentifier>{07e4729c-bd71-4aaf-b156-ec8d2247c6ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OS\Windows">
+      <UniqueIdentifier>{6696959e-c36e-4182-9bbd-7b4bb745c3f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{a238d500-c385-4076-baa5-e46e3d228389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExLib">
+      <UniqueIdentifier>{5093314a-6316-4ede-8cf0-97750c81ed2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Context.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Opcode.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AcelerateInterator.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeData.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadFromFile.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectClass.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalScope.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ExceptionHandler.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="StackLocalVar.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstScope.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Method.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Bool.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Class.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="NativeMethod.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="InitStatic.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassScope.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TypeData.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Context.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Opcode.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="StackLocalVar.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AcselerateInterator.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AdditionalLib.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ExeptionManager.h">
+      <Filter>OS\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SwithTable.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadFromFile.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectClass.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalScope.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ExeptionHandler.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="InlineTypeData.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstScope.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Method.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bool.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicArray.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Class.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="NativeMethod.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExHashTable.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExLib.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExMatrix.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExNeuralNet.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExQueryUrl.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExQueryUrlHTTP.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExQueryUrlOpenSSL.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExString.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExTypeTraits.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExWindows.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExArg.h">
+      <Filter>ExLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassScope.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

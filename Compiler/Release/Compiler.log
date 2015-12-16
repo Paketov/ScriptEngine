@@ -1,0 +1,33 @@
+﻿Построение начато 16.04.2015 3:32:07.
+     1>Проект "C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Compiler\Compiler.vcxproj" в узле 3 (целевые объекты Rebuild).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppClean.targets(75,5): warning : Отказано в доступе по пути "C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Compiler.exe".
+     1>ClCompile:
+         C:\Program Files (x86)\MSVS12\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\Script\Opcode.cpp Compiler.cpp Keywords.cpp
+         Opcode.cpp
+         Compiler.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\compiler\..\Script\TypeData.h(23): warning C4005: MEM_FREE: изменение макроопределения
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\compiler\Compiler.h(13): warning C4005: min: изменение макроопределения
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\shared\minwindef.h(197): см. предыдущее определение "min"
+     1>Compiler.cpp(48): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\MSVS12\VC\include\stdio.h(218): см. объявление "fopen"
+     1>Compiler.cpp(120): warning C4308: отрицательная целая константа преобразована в тип без знака
+     1>Compiler.cpp(157): warning C4244: =: преобразование "double" в "__int64", возможна потеря данных
+     1>Compiler.cpp(252): warning C4102: IntrpretChar: неиспользованная метка
+     1>Compiler.cpp(311): warning C4101: Word: неиспользованная локальная переменная
+     1>Compiler.cpp(306): warning C4101: c: неиспользованная локальная переменная
+         Keywords.cpp
+     1>c:\users\andr\documents\visual studio 2012\projects\script\compiler\..\Script\TypeData.h(23): warning C4005: MEM_FREE: изменение макроопределения
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h(11537): см. предыдущее определение "MEM_FREE"
+     1>c:\users\andr\documents\visual studio 2012\projects\script\compiler\Compiler.h(13): warning C4005: min: изменение макроопределения
+                 C:\Program Files (x86)\Windows Kits\8.0\Include\shared\minwindef.h(197): см. предыдущее определение "min"
+       Link:
+         C:\Program Files (x86)\MSVS12\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Compiler.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Compiler.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Compiler.lib" /MACHINE:X86 /SAFESEH Release\Opcode.obj
+         Release\Compiler.obj
+         Release\Keywords.obj
+     1>LINK : fatal error LNK1104: не удается открыть файл "C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Release\Compiler.exe"
+     1>Построение проекта "C:\Users\andr\Documents\Visual Studio 2012\Projects\Script\Compiler\Compiler.vcxproj" завершено (целевые объекты Rebuild) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:00:04.22

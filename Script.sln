@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Script", "Script\Script.vcxproj", "{49C7D984-8AB9-4224-A708-49AF1040AF74}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Compiler", "Compiler\Compiler.vcxproj", "{417AD580-977B-46D2-8098-6FC6E3ADDB93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49C7D984-8AB9-4224-A708-49AF1040AF74}.Debug|Win32.ActiveCfg = Debug|Win32
+		{49C7D984-8AB9-4224-A708-49AF1040AF74}.Debug|Win32.Build.0 = Debug|Win32
+		{49C7D984-8AB9-4224-A708-49AF1040AF74}.Release|Win32.ActiveCfg = Release|Win32
+		{49C7D984-8AB9-4224-A708-49AF1040AF74}.Release|Win32.Build.0 = Release|Win32
+		{417AD580-977B-46D2-8098-6FC6E3ADDB93}.Debug|Win32.ActiveCfg = Debug|Win32
+		{417AD580-977B-46D2-8098-6FC6E3ADDB93}.Debug|Win32.Build.0 = Debug|Win32
+		{417AD580-977B-46D2-8098-6FC6E3ADDB93}.Release|Win32.ActiveCfg = Release|Win32
+		{417AD580-977B-46D2-8098-6FC6E3ADDB93}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

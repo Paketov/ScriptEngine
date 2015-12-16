@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{49C7D984-8AB9-4224-A708-49AF1040AF74}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Script</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <BrowseInformation>true</BrowseInformation>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ShowIncludes>false</ShowIncludes>
+      <PreprocessToFile>false</PreprocessToFile>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>E:\Repository\SomeSmallLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>E:\Repository\SomeSmallLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AcelerateInterator.cpp" />
+    <ClCompile Include="Bool.cpp" />
+    <ClCompile Include="ClassScope.cpp" />
+    <ClCompile Include="ConstScope.cpp" />
+    <ClCompile Include="Context.cpp" />
+    <ClCompile Include="ExceptionHandler.cpp" />
+    <ClCompile Include="GlobalScope.cpp" />
+    <ClCompile Include="InitStatic.cpp" />
+    <ClCompile Include="LoadFromFile.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Method.cpp" />
+    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="NativeMethod.cpp" />
+    <ClCompile Include="ObjectClass.cpp" />
+    <ClCompile Include="Opcode.cpp" />
+    <ClCompile Include="StackLocalVar.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="TypeData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AcselerateInterator.h" />
+    <ClInclude Include="AdditionalLib.h" />
+    <ClInclude Include="Bool.h" />
+    <ClInclude Include="ConstScope.h" />
+    <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExArg.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExHashTable.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExLib.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExMatrix.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExNeuralNet.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExQueryUrl.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExQueryUrlHTTP.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExQueryUrlOpenSSL.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExString.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExTypeTraits.h" />
+    <ClInclude Include="E:\Repository\SomeSmallLibrary\ExWindows.h" />
+    <ClInclude Include="ExeptionHandler.h" />
+    <ClInclude Include="ExeptionManager.h" />
+    <ClInclude Include="GlobalScope.h" />
+    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="InlineTypeData.h" />
+    <ClInclude Include="LoadFromFile.h" />
+    <ClInclude Include="Method.h" />
+    <ClInclude Include="NativeMethod.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectClass.h" />
+    <ClInclude Include="ClassScope.h" />
+    <ClInclude Include="StackLocalVar.h" />
+    <ClInclude Include="Context.h" />
+    <ClInclude Include="Class.h" />
+    <ClInclude Include="Opcode.h" />
+    <ClInclude Include="String.h" />
+    <ClInclude Include="SwithTable.h" />
+    <ClInclude Include="TypeData.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
