@@ -106,8 +106,8 @@
   <ItemGroup>
     <ClCompile Include="AcelerateInterator.cpp" />
     <ClCompile Include="Bool.cpp" />
+    <ClCompile Include="ClassManager.cpp" />
     <ClCompile Include="ClassScope.cpp" />
-    <ClCompile Include="ConstScope.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="ExceptionHandler.cpp" />
     <ClCompile Include="GlobalScope.cpp" />
@@ -127,7 +127,7 @@
     <ClInclude Include="AcselerateInterator.h" />
     <ClInclude Include="AdditionalLib.h" />
     <ClInclude Include="Bool.h" />
-    <ClInclude Include="ConstScope.h" />
+    <ClInclude Include="ClassManager.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="E:\Repository\SomeSmallLibrary\ExArg.h" />
     <ClInclude Include="E:\Repository\SomeSmallLibrary\ExHashTable.h" />

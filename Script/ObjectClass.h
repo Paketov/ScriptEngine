@@ -42,8 +42,6 @@ private:
 	LPOBJECT_HEADER				HeaderObjQueue;
 	unsigned					CountHeaderInQueue;
 	unsigned					MaxCountHeaderInQueue;
-	LPHEADER_STRING             TrueAsString;
-	LPHEADER_STRING             FalseAsString;
 
 	void (__fastcall * AddInQueueHeader)(LPOBJECT_CLASS This, LPOBJECT_HEADER Header);
 
@@ -93,6 +91,8 @@ public:
 	virtual void OperatorRemoveByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex);
 	virtual void OperatorRemoveByIndex(INSTANCE_CLASS Object, ZELLI_INTEGER MemberIndex);
 
+	HASH_VAL GetHash(INSTANCE_CLASS Instance);
+
 	virtual void FreeAllUnused();
 
 	virtual void SetAllInstanceToUnused(LPHEADER_CLASS Class)
@@ -102,7 +102,9 @@ public:
 		LIST_HEADER<OBJECT_HEADER>::Close(&ListObject);
 	}
 
-	virtual void MarkAsUsed(INSTANCE_CLASS Object);
+	virtual void MarkInstanceAsUsed(INSTANCE_CLASS Object);
+
+	virtual void MarkClassAsUsed(INSTANCE_CLASS Object);
 
 	virtual ZELLI_INTEGER GetLength(INSTANCE_CLASS Object);
 

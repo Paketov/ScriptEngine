@@ -136,7 +136,7 @@ public:
 			    RemoveElement(i);
 	}
 
-	void RemoveElement(I Index) { Turnindex(Index); }
+	inline void RemoveElement(I Index) { Turnindex(Index); }
 
 	void RemoveWithCompress(I Index)
 	{
@@ -153,7 +153,7 @@ public:
 			*Arr = NullV;
 	}
 
-	T & operator[](I Index) { return Count.Array[Index]; }
+	inline T & operator[](I Index) { return Count.Array[Index]; }
 
 	I Search(T Val)
 	{

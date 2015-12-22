@@ -27,7 +27,6 @@ public:
 			return true;
 		case TYPEDATA_INTEGER:
 			return Integer != 0;
-		case TYPEDATA_STRING:
 		case TYPEDATA_OBJECT:
 			return Object.operator bool();
 		default:

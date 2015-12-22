@@ -81,3 +81,16 @@ inline LPINSIDE_DATA STACK_LOCAL_VAR::GetVarToWrite(const NUMBER_VAR n) HAS_THRO
 		return ThisFrame->StartVar + n;
 	THROW_NATIVE_EXCEPT("STACK_LOCAL_VAR: variable out of local scope.", HEADER_EXCEPTION::VARIABLE_OVER_LOCAL_SCOPE);
 }
+
+
+FRAME_BORDER& STACK_LOCAL_VAR::operator[](unsigned IndexFrame)
+{
+	unsigned CurCountFrames = CountFrames;
+	if(IndexFrame >= CurCountFrames)
+		return *(LPFRAME_BORDER)nullptr;
+	CurCountFrames -= IndexFrame - 1;
+	LPFRAME_BORDER f = ThisFrame;
+	for(unsigned i = 0;i < CurCountFrames; i++)
+		f = f->Previous;
+	return *f;
+}

@@ -21,11 +21,7 @@ protected:
 
 	//virtual void WriteMember(INSTANCE_CLASS, const LPINSIDE_DATA, const LPINSIDE_DATA);
 
-	//virtual void WriteMemberById(INSTANCE_CLASS, const ID_OBJMEMBER, const LPINSIDE_DATA);
-
-	//virtual void RemoveElement(INSTANCE_CLASS, const LPINSIDE_DATA);
-
-	//virtual void RemoveElementById(INSTANCE_CLASS, const ID_OBJMEMBER);
+	//virtual void RemoveMember(INSTANCE_CLASS, const LPINSIDE_DATA);
 
 	//virtual bool OperatorToBool(INSTANCE_CLASS Object)
 	//{
@@ -68,10 +64,7 @@ protected:
 public:
 
 
-	BOOL_CLASS(LPSTRING_CLASS StringClass)
-	{
-	   Name = StringClass->RegisterString("bool");
-	}
+	BOOL_CLASS(LPSTRING_CLASS StringClass) : HEADER_CLASS(this, "bool", StringClass) {}
 
 };
 

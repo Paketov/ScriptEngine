@@ -4,7 +4,6 @@
 #include "Method.h"
 #include "GlobalScope.h"
 #include "InlineTypeData.h"
-#include "ConstScope.h"
 
 
 #define READ_OPERAND(Offset, Type) (*(Type*)(ip + (Offset)))
@@ -22,9 +21,9 @@ EXECUTE_CONTEXT::EXECUTE_CONTEXT()
 	ObjManager = &MainObjectManager;
 	StringClass = &MainStringClass;
 	GlobalObject = INSIDE_DATA::Null;
-	ConstValues = INSIDE_DATA::Null;
 	ObjManager->ClassRegister(StringClass);
 	ObjManager->ClassRegister(&FunctionClass);
+	ObjManager->ClassRegister(&ExceptionClass);
 	EXECUTE_CONTEXT::ForThisThread = this;
 }
 
@@ -35,9 +34,9 @@ EXECUTE_CONTEXT::EXECUTE_CONTEXT(unsigned nStartSizeStack, unsigned nMaxSizeStac
 	LastGcState = GC_STAGE::CLEANING_COMPLETE;
 	ObjManager = &MainObjectManager;
 	StringClass = &MainStringClass;
+	
 	LPGLOBAL_SCOPE_CLASS GlobalScope = new GLOBAL_SCOPE_CLASS(StringClass);
 	GlobalObject = GlobalScope->CreateInstance(this);
-	ConstValues = MainConstScope.CreateInstance(this);
 	EXECUTE_CONTEXT::ForThisThread = this;
 }
 
@@ -56,8 +55,97 @@ EXECUTE_CONTEXT::EXECUTE_CONTEXT
 	ObjManager = CommonObjectManager;
 	StringClass = CommonStringClass;
 	GlobalObject = *CommonScope;
-	ConstValues = *CommonConst;
 	EXECUTE_CONTEXT::ForThisThread = this;
+}
+
+
+bool EXECUTE_CONTEXT::StaticMarkAllInstance()
+{
+	if(ForThisThread == NULL)
+		return false;
+	ForThisThread->MarkAllInstance();
+	ForThisThread->LastGcState = GC_STAGE::ALL_OBJECT_HAS_MARKS;
+	return true;
+}
+
+bool EXECUTE_CONTEXT::StaticSetAllInstanceToUnused()
+{
+	if(ForThisThread == NULL)
+		return false;
+	ForThisThread->ObjManager->SetAllInstanceToUnused();
+	ForThisThread->LastGcState = GC_STAGE::SETTING_OBJECT_UNUSED_COMPLETE;
+	return true;
+}
+
+bool EXECUTE_CONTEXT::StaticFreeAllUnusedInstance()
+{
+	if(ForThisThread == NULL)
+		return false;
+	ForThisThread->ObjManager->FreeAllUnusedInstance();
+	ForThisThread->LastGcState = GC_STAGE::CLEANING_COMPLETE;
+	return true;
+}
+
+bool EXECUTE_CONTEXT::StaticCleaning()
+{
+	switch(ForThisThread->LastGcState)
+	{
+	case GC_STAGE::CLEANING_COMPLETE:
+		ForThisThread->MarkAllInstance();
+	case GC_STAGE::SETTING_OBJECT_UNUSED_COMPLETE:
+		ForThisThread->ObjManager->SetAllInstanceToUnused();
+	case GC_STAGE::ALL_OBJECT_HAS_MARKS:
+		ForThisThread->ObjManager->FreeAllUnusedInstance();
+	}
+	ForThisThread->LastGcState = GC_STAGE::CLEANING_COMPLETE;
+	return true;
+}
+
+void EXECUTE_CONTEXT::MarkAllInstance()
+{
+	if(GlobalObject.IsObject)
+		GlobalObject.Object.MarkAsUsed();
+	LPINSIDE_DATA EndVar = ThisFrame->StartVar + ThisFrame->Barrier;
+	LPINSIDE_DATA StartVar = StartFrame.StartVar;
+	for(; StartVar < EndVar; StartVar++)
+	{
+		switch(StartVar->TypeData)
+		{
+		case INSIDE_DATA::TYPEDATA_OBJECT:
+			StartVar->Object.MarkAsUsed();
+		}
+	}
+	ObjManager->MarkAllClassesAsUsed();
+	GlobalObject.Object.Prototype->MarkAsUsed();
+	LastGcState = GC_STAGE::ALL_OBJECT_HAS_MARKS;
+}
+
+
+void EXECUTE_CONTEXT::SetAllInstanceToUnused()
+{
+	ObjManager->SetAllInstanceToUnused();
+	LastGcState = GC_STAGE::ALL_OBJECT_HAS_MARKS;
+}
+
+void EXECUTE_CONTEXT::FreeAllUnusedInstance()
+{
+	ObjManager->FreeAllUnusedInstance();
+	LastGcState = GC_STAGE::CLEANING_COMPLETE;
+}
+
+bool EXECUTE_CONTEXT::Cleaning()
+{
+	switch(LastGcState)
+	{
+	case GC_STAGE::CLEANING_COMPLETE:
+		MarkAllInstance();
+	case GC_STAGE::SETTING_OBJECT_UNUSED_COMPLETE:
+		ObjManager->SetAllInstanceToUnused();
+	case GC_STAGE::ALL_OBJECT_HAS_MARKS:
+		ObjManager->FreeAllUnusedInstance();
+	}
+	LastGcState = GC_STAGE::CLEANING_COMPLETE;
+	return true;
 }
 
 

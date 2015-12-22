@@ -4,7 +4,6 @@
 #include "Method.h"
 #include "GlobalScope.h"
 #include "InlineTypeData.h"
-#include "ConstScope.h"
 
 #ifdef WIN32
 HANDLE  ProcessHeapHandle = GetProcessHeap();
@@ -24,7 +23,6 @@ ARG_FUNC ARG_FUNC::EmptyArgs = {0};
 
 OBJECT::ARR_FOR_CLASS			OBJECT::ClassList(50);
 METHOD_CLASS					EXECUTE_CONTEXT::FunctionClass;
-CONST_SCOPE_CLASS			    EXECUTE_CONTEXT::MainConstScope;
 STRING_CLASS					EXECUTE_CONTEXT::MainStringClass;
 NATIVEMETHOD_CLASS              EXECUTE_CONTEXT::NativeMethodClass(&EXECUTE_CONTEXT::MainStringClass);
 CLASS_MANAGER					EXECUTE_CONTEXT::MainObjectManager;

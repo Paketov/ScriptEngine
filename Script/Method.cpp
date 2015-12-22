@@ -1,9 +1,19 @@
-
-
-
 #include "Method.h"
 #include "String.h"
 
+
+void METHOD_CLASS::AddMethodToList(LPHEADER_METHOD Method)
+{
+	if(CountMethods >= MaxCountMethods)
+	{
+		unsigned NewSize = (unsigned)((float)MaxCountMethods * GOLDEN_RATIO);
+		Methods = (LPHEADER_METHOD*)MEM_REALLOC(Methods, NewSize * sizeof(LPHEADER_METHOD));
+		if(Methods == NULL)
+			THROW_UNHANDLED_EXCEPTION("METHOD_CLASS: Not realloc memory for method list.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
+		MaxCountMethods = NewSize;
+	}
+	Methods[CountMethods++] = Method;
+}
 
 
 LPHEADER_METHOD HEADER_METHOD::New(NUMBER_VAR CountConstObjs)
@@ -15,20 +25,22 @@ LPHEADER_METHOD HEADER_METHOD::New(NUMBER_VAR CountConstObjs)
 	return NewMethod;
 }
 
-void METHOD_CLASS::MarkAsUsed(INSTANCE_CLASS Object)
+void METHOD_CLASS::MarkInstanceAsUsed(INSTANCE_CLASS Object)
 {
 	LPHEADER_METHOD Method = (LPHEADER_METHOD)Object;
 	Method->Uses = CurCheckUses;
+	if(Method->IsBytecode)
+	{
 	for(LPINSIDE_DATA StartMarkVar = Method->ConstObjs, EndMarkVar = StartMarkVar + Method->ConstObjs.Count;
 		StartMarkVar < EndMarkVar;
 		StartMarkVar++)
 		StartMarkVar->MarkAsUsed();
+	}
 }
 
-void METHOD_CLASS::SetAllInstanceToUnused()
-{
-	CurCheckUses = 0x7f & (CurCheckUses + 1);
-}
+void METHOD_CLASS::MarkClassAsUsed() {}
+
+void METHOD_CLASS::SetAllInstanceToUnused() { CurCheckUses = 0x7f & (CurCheckUses + 1); }
 
 void METHOD_CLASS::FreeAllUnused()
 {
@@ -50,7 +62,7 @@ void METHOD_CLASS::FreeAllUnused()
 		if(NewSize < 10)
 			return;
 		Methods = (LPHEADER_METHOD*)MEM_REALLOC(Methods, NewSize * sizeof(LPHEADER_METHOD));
-		if(Methods == NULL)
+		if(Methods == nullptr)
 			THROW_UNHANDLED_EXCEPTION("METHOD_CLASS: Not realloc memory for method list.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
 		MaxCountMethods = NewSize;
 	}
@@ -65,7 +77,7 @@ INSIDE_DATA METHOD_CLASS::RegisterMethod(NATIVE_FUNCTION NativeMethod)
 	NewMethod->Native.Method = NativeMethod;
 	NewMethod->Uses = CurCheckUses;
 	AddMethodToList(NewMethod);
-	return OBJECT::New(this,NewMethod);
+	return OBJECT::New(this, NewMethod);
 }
 
 INSIDE_DATA METHOD_CLASS::RegisterMethod(LPHEADER_METHOD ByteCodeMethod)
@@ -73,6 +85,7 @@ INSIDE_DATA METHOD_CLASS::RegisterMethod(LPHEADER_METHOD ByteCodeMethod)
 	//ByteCodeMethod->Prototype = this;
 	ByteCodeMethod->IsBytecode = true;
 	ByteCodeMethod->Uses = CurCheckUses;
+
 	AddMethodToList(ByteCodeMethod);
 	return OBJECT::New(this, ByteCodeMethod);
 }
@@ -97,7 +110,7 @@ INSIDE_DATA METHOD_CLASS::OperatorCall(INSTANCE_CLASS Object, LPINSIDE_DATA This
 	return ((LPHEADER_METHOD)Object)->operator()(Context, This, Arg);
 }
 
-METHOD_CLASS::METHOD_CLASS()
+METHOD_CLASS::METHOD_CLASS() : HEADER_CLASS(this)
 {
 	Methods = (LPHEADER_METHOD*)MEM_ALLOC(sizeof(LPHEADER_METHOD) * 10);
 	if(Methods == NULL)
@@ -108,7 +121,7 @@ METHOD_CLASS::METHOD_CLASS()
 
 METHOD_CLASS::~METHOD_CLASS()
 {
-   if(Methods != NULL)
+   if(Methods != nullptr)
 	   MEM_FREE(Methods);
 }
 
@@ -133,6 +146,11 @@ INSIDE_DATA HEADER_METHOD::operator()(LPEXECUTE_CONTEXT Context, LPARG_FUNC Arg)
 	return Result;
 }
 
+
+HASH_VAL METHOD_CLASS::GetHash(INSTANCE_CLASS Instance)
+{
+	return (HASH_VAL)Instance;
+}
 
 INSIDE_DATA HEADER_METHOD::operator()(LPEXECUTE_CONTEXT Context, LPINSIDE_DATA ThisScope, LPARG_FUNC Arg)
 {

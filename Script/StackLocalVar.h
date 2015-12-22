@@ -16,38 +16,31 @@ typedef struct FRAME_BORDER
 	union
 	{
 		_FRAME_BORDER_DATA;
-		class
-		{
+		class{
 			_FRAME_BORDER_DATA;
 		public:
-			inline operator NUMBER_VAR()
-			{
-				return Barrier;
-			}
+			inline operator NUMBER_VAR() { return Barrier; }
 		} CountVar;
 
-		class
-		{
+		class{
 			_FRAME_BORDER_DATA;
 		public:
-			inline operator unsigned()
-			{
-				return Barrier * sizeof(INSIDE_DATA);
-			}
+			inline operator unsigned() { return Barrier * sizeof(INSIDE_DATA); }
 		} LocalSize;
 
-		class
-		{
+		class{
 			_FRAME_BORDER_DATA;
 		public:
-			inline operator LPINSIDE_DATA()
-			{
-				return StartVar + Barrier;
-			}
+			inline operator LPINSIDE_DATA() { return StartVar + Barrier; }
 		} Top;
 	};
 
-	inline FRAME_BORDER(){}
+	inline FRAME_BORDER()
+	{
+		StartVar = nullptr;
+		Previous = nullptr;
+		Barrier = 0;
+	}
 
 	inline FRAME_BORDER(FRAME_BORDER* PrevFrame)
 	{
@@ -61,7 +54,6 @@ typedef struct FRAME_BORDER
 		StartVar = PrevFrame->StartVar + (Previous = PrevFrame)->Barrier;
 	}
 
-
 	inline void SetNullRegion(NUMBER_VAR NewCountVar)
 	{
 		NUMBER_VAR Cur = Barrier;
@@ -71,30 +63,18 @@ typedef struct FRAME_BORDER
 	}
 
 	//Если переменная выходит за пределы использованных переменных
-	inline bool IsVarInScope(const NUMBER_VAR n)
-	{
-		return n < Barrier;
-	}
+	inline bool IsVarInScope(const NUMBER_VAR n) { return n < Barrier; }
 
-	inline INSIDE_DATA & operator[] (NUMBER_VAR IndexVar)
-	{
-		return *(StartVar + IndexVar);
-	}
+	inline INSIDE_DATA & operator[] (NUMBER_VAR IndexVar) { return StartVar[IndexVar]; }
 
-	inline operator LPINSIDE_DATA()
-	{
-		return StartVar;
-	}
+	inline operator LPINSIDE_DATA() { return StartVar; }
 
-	inline LPINSIDE_DATA operator =(LPINSIDE_DATA Var)
-	{
-		return StartVar = Var;
-	}
+	inline LPINSIDE_DATA operator =(LPINSIDE_DATA Var) { return StartVar = Var; }
+
 } FRAME_BORDER, *LPFRAME_BORDER;
 
 
 //Базовый класс для работы с переменными
-//Стек интрпретатора для работы с данными
 class STACK_LOCAL_VAR
 {
 
@@ -115,24 +95,15 @@ public:
 		{
 			__STACK_LOCAL_VAR_DATA;
 		public:
-			inline operator LPINSIDE_DATA()
-			{
-				return StartFrame->StartVar;
-			}
-			inline operator void*()
-			{
-				return StartFrame->StartVar;
-			}
+			inline operator LPINSIDE_DATA() { return StartFrame->StartVar; }
+			inline operator void*() { return StartFrame->StartVar; }
 		} Bottom;
 
 		class
 		{
 			__STACK_LOCAL_VAR_DATA;
 		public:
-			inline operator unsigned()
-			{
-				return (unsigned int)EndBlockAdr - (unsigned int)StartFrame->StartVar;
-			}
+			inline operator unsigned() { return (unsigned int)EndBlockAdr - (unsigned int)StartFrame->StartVar; }
 
 			bool operator=(const unsigned NewSize)
 			{
@@ -158,6 +129,18 @@ public:
 				return true;
 			}
 		} Size;
+
+		class
+		{
+			__STACK_LOCAL_VAR_DATA;
+		public:
+			operator unsigned()
+			{
+				unsigned i = 0;
+				for(LPFRAME_BORDER f = ThisFrame; f != nullptr ;f = f->Previous) i++;
+				return i;
+			}
+		} CountFrames;
 	};
 
 	STACK_LOCAL_VAR(unsigned int nStartSize, unsigned int nMaxSize) HAS_THROW;
@@ -165,27 +148,24 @@ public:
 	STACK_LOCAL_VAR()
 	{
 		ThisFrame = &StartFrame;
-		EndBlockAdr = StartFrame.StartVar = NULL;
+		EndBlockAdr = StartFrame.StartVar = nullptr;
 	}
 
 	~STACK_LOCAL_VAR()
 	{
-		if(StartFrame.StartVar != NULL)
+		if(StartFrame.StartVar != nullptr)
 			MEM_FREE(StartFrame.StartVar);
 	}
-public:
-
 
 	/*===================================================*/
+
+	FRAME_BORDER& operator[](unsigned IndexFrame);
+
 	//Возвращает указатель на запрашиваемые данные для записи/чтения
 	inline LPINSIDE_DATA GetVarToWrite(const NUMBER_VAR n) HAS_THROW;
 
 	//Возвращает указатель на запрашиваемые данные для чтения
-	inline LPINSIDE_DATA GetVarToRead(const NUMBER_VAR n)
-	{
-		return (n < ThisFrame->Barrier)?(ThisFrame->StartVar + n): &INSIDE_DATA::Null;
-	}
-
+	inline LPINSIDE_DATA GetVarToRead(const NUMBER_VAR n) { return (n < ThisFrame->Barrier)? (ThisFrame->StartVar + n): &INSIDE_DATA::Null; }
 
 	//Закладывание переменной в стек как аргумента
 	LPINSIDE_DATA PushArg(LPNUMBER_VAR NumberArg) HAS_THROW;
@@ -194,11 +174,7 @@ public:
 	LPINSIDE_DATA PushArgs(LPARG_FUNC Arg) HAS_THROW;
 
 	//Очистка фрейма от аргументов
-	inline void ClearArg()
-	{
-		ThisFrame->Barrier = 0;
-	}
-
+	inline void ClearArg() { ThisFrame->Barrier = 0; }
 };
 
 

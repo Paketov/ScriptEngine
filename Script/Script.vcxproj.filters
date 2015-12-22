@@ -56,9 +56,6 @@
     <ClCompile Include="StackLocalVar.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="ConstScope.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Method.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
@@ -74,8 +71,11 @@
     <ClCompile Include="InitStatic.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="ClassManager.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
     <ClCompile Include="ClassScope.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,9 +123,6 @@
     </ClInclude>
     <ClInclude Include="InlineTypeData.h">
       <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstScope.h">
-      <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Method.h">
       <Filter>Objects</Filter>
@@ -178,8 +175,11 @@
     <ClInclude Include="E:\Repository\SomeSmallLibrary\ExArg.h">
       <Filter>ExLib</Filter>
     </ClInclude>
+    <ClInclude Include="ClassManager.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
     <ClInclude Include="ClassScope.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,8 +15,8 @@
 class GLOBAL_SCOPE_CLASS: public HEADER_CLASS
 {	
 private:
-	OBJECT			Instance;
-	LPSTRING_CLASS	StringClass;
+	OBJECT				Instance;
+	OBJECT::PROTOTYPE	StringClass;
 
 	typedef unsigned short INDEX_OBJ_ELEMENT;
 
@@ -39,14 +39,22 @@ public:
 
 	virtual INSIDE_DATA CreateInstance(LPEXECUTE_CONTEXT, LPARG_FUNC Arg = &ARG_FUNC::EmptyArgs);
 
-
 	virtual INSIDE_DATA ReadMember(INSTANCE_CLASS, const LPINSIDE_DATA);
 
 	virtual void WriteMember(INSTANCE_CLASS, const LPINSIDE_DATA, const LPINSIDE_DATA);
 
 	virtual void RemoveMember(INSTANCE_CLASS, const LPINSIDE_DATA);
 
-	virtual void MarkAsUsed();
+	// = Object[MemberIndex]
+	virtual INSIDE_DATA OperatorReadByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex);
+
+	//Object[MemberIndex] = Source
+	virtual void OperatorWriteByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex, const LPINSIDE_DATA Source);
+
+	//delete Object[MemberIndex]
+	virtual void OperatorRemoveByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex);
+
+	virtual void MarkClassAsUsed();
 
 	virtual ZELLI_INTEGER GetLength(INSTANCE_CLASS);
 

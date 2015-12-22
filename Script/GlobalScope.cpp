@@ -2,7 +2,7 @@
 #include "String.h"
 
 
-void GLOBAL_SCOPE_CLASS::MarkAsUsed()
+void GLOBAL_SCOPE_CLASS::MarkClassAsUsed()
 {
 		NodeTable.EnumValues(
 		[](void* StringClass, HASH_ELEMENT* Element)
@@ -25,7 +25,7 @@ INSIDE_DATA GLOBAL_SCOPE_CLASS::ReadMember(INSTANCE_CLASS Object, const LPINSIDE
 {
 	if(Member->IsString)
 	{
-		auto Cell = NodeTable.Insert((LPHEADER_STRING)Member->Object);
+		auto Cell = NodeTable.Search((LPHEADER_STRING)Member->Object);
 		if(Cell != nullptr)
 			return Cell->Val;
 	}
@@ -54,10 +54,25 @@ void GLOBAL_SCOPE_CLASS::RemoveMember(INSTANCE_CLASS Object, const LPINSIDE_DATA
 		THROW_NATIVE_EXCEPT("GLOBAL_SCOPE_CLASS: Not remove by by not string value.", HEADER_EXCEPTION::BAD_TYPE_ARG);
 }
 
-ZELLI_INTEGER GLOBAL_SCOPE_CLASS::GetLength(INSTANCE_CLASS Object)
+	// = Object[MemberIndex]
+INSIDE_DATA GLOBAL_SCOPE_CLASS::OperatorReadByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex)
 {
-	return NodeTable.CountUsed;
+	return ReadMember(Object, MemberIndex);
 }
+
+	//Object[MemberIndex] = Source
+void GLOBAL_SCOPE_CLASS::OperatorWriteByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex, const LPINSIDE_DATA Source)
+{
+	WriteMember(Object, MemberIndex, Source);
+}
+
+	//delete Object[MemberIndex]
+void GLOBAL_SCOPE_CLASS::OperatorRemoveByIndex(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex)
+{
+	RemoveMember(Object, MemberIndex);
+}
+
+ZELLI_INTEGER GLOBAL_SCOPE_CLASS::GetLength(INSTANCE_CLASS Object) { return NodeTable.CountUsed; }
 
 
 void GLOBAL_SCOPE_CLASS::EnumKey(INSTANCE_CLASS Object, LPINSIDE_DATA CurKey)
@@ -75,7 +90,7 @@ void GLOBAL_SCOPE_CLASS::EnumKey(INSTANCE_CLASS Object, LPINSIDE_DATA CurKey)
 	CurKey->SetNull();
 }
 
-INSIDE_DATA GLOBAL_SCOPE_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context,LPARG_FUNC Arg)
+INSIDE_DATA GLOBAL_SCOPE_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context, LPARG_FUNC Arg)
 {
 	INSIDE_DATA NewInstance;
 	NewInstance.TypeData = INSIDE_DATA::TYPEDATA_OBJECT;
@@ -83,10 +98,9 @@ INSIDE_DATA GLOBAL_SCOPE_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context,LPARG_F
 	return NewInstance;
 }
 
-GLOBAL_SCOPE_CLASS::GLOBAL_SCOPE_CLASS(LPSTRING_CLASS ListStrings)
+GLOBAL_SCOPE_CLASS::GLOBAL_SCOPE_CLASS(LPSTRING_CLASS ListStrings) : HEADER_CLASS(this, "__GlobalScope", ListStrings)
 {
 	StringClass = ListStrings;
-	Name = ListStrings->RegisterString("__GlobalScope");
 	if(!NODE_TABLE_HEADER::New(NodeTable, 15))
 		THROW_UNHANDLED_EXCEPTION("GLOBAL_SCOPE: Not alloc memory.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
 	NodeTable.Init(15);
@@ -101,7 +115,7 @@ SIZE_STR GLOBAL_SCOPE_CLASS::InfoClass(LPINTERNAL_CHAR Buffer, SIZE_STR LenInBuf
 	SIZE_STR CurLen = LenInBuf, Len2;
 	LPINTERNAL_CHAR Cur = Buffer;
 	INSIDE_DATA Key = INSIDE_DATA::Null, Data;
-	Len2 = toz(sprintf_s(Buffer, CurLen, "%.*s\n", Name->Len, Name->Str));
+	Len2 = toz(sprintf_s(Buffer, CurLen, "%.*s\n", ((LPHEADER_STRING)Name)->Len, ((LPHEADER_STRING)Name)->Str));
 	CurLen -= Len2;
 	Buffer += Len2;
 	Len2 = NodeTable.QualityInfo(Buffer, CurLen);

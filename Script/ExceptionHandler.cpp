@@ -4,26 +4,23 @@
 #include "Context.h"
 
 
-LPHEADER_STRING			EXEPTION_CLASS::propId;
-LPHEADER_STRING			EXEPTION_CLASS::propDescription;
-#ifdef _DEBUG
-LPHEADER_STRING			EXEPTION_CLASS::PropCppFile;
-LPHEADER_STRING			EXEPTION_CLASS::PropLine;
-#endif
-
-EXEPTION_CLASS::EXEPTION_CLASS(LPSTRING_CLASS StrClass)
+void EXEPTION_CLASS::MarkClassAsUsed()
 {
-	Name = StrClass->RegisterString("Exception");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(Name);
-	propId = StrClass->RegisterString("Id");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(propId);
-	propDescription = StrClass->RegisterString("Description");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(propDescription);
+	propId.MarkAsUsed();
+	propDescription.MarkAsUsed();
 #ifdef _DEBUG
-	PropCppFile = StrClass->RegisterString("CppFile");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(PropCppFile);
-	PropLine = StrClass->RegisterString("Line");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(PropLine);
+	PropCppFile.MarkAsUsed();
+	PropLine.MarkAsUsed();
+#endif
+}
+
+EXEPTION_CLASS::EXEPTION_CLASS(LPSTRING_CLASS StrClass) : HEADER_CLASS(this, "Exception", StrClass)
+{
+	propId = OBJECT::New(StrClass, StrClass->RegisterString("Id"));
+	propDescription = OBJECT::New(StrClass, StrClass->RegisterString("Description"));
+#ifdef _DEBUG
+	PropCppFile = OBJECT::New(StrClass, StrClass->RegisterString("CppFile"));
+	PropLine = OBJECT::New(StrClass, StrClass->RegisterString("Line"));
 #endif
 }
 
@@ -32,17 +29,16 @@ INSIDE_DATA EXEPTION_CLASS::ReadMember(INSTANCE_CLASS Object, const LPINSIDE_DAT
 	if(Member->IsString)
 	{
 		LPHEADER_STRING MemberStr = Member->Object;
-		if(*MemberStr == *propId)
+		if(*MemberStr == *((LPHEADER_STRING)propId))
 			return ((LPHEADER_EXCEPTION)Object)->ThrowId;
-		else if(*MemberStr == *propDescription)
+		else if(*MemberStr == *(LPHEADER_STRING)propDescription)
 			return EXECUTE_CONTEXT::ForThisThread->StringClass->RegisterCommonString(((LPHEADER_EXCEPTION)Object)->Description);
 #ifdef _DEBUG
-		else if(*MemberStr == *PropCppFile)
+		else if(*MemberStr == *(LPHEADER_STRING)PropCppFile)
 			return EXECUTE_CONTEXT::ForThisThread->StringClass->RegisterCommonString(((LPHEADER_EXCEPTION)Object)->CppFile);
-		else if(*MemberStr == *PropLine)
+		else if(*MemberStr == *(LPHEADER_STRING)PropLine)
 			return ((LPHEADER_EXCEPTION)Object)->Line;
 #endif
-
 	}
 	return INSIDE_DATA::Null;
 }
@@ -53,7 +49,7 @@ void EXEPTION_CLASS::WriteMember(INSTANCE_CLASS Object, const LPINSIDE_DATA Memb
 	THROW_NATIVE_EXCEPT("EXEPTION_CLASS: Not write in const object", HEADER_EXCEPTION::NOT_WRITE_IN_CONST_OBJECT);
 };
 
-void EXEPTION_CLASS::RemoveElement(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex)
+void EXEPTION_CLASS::RemoveMember(INSTANCE_CLASS Object, const LPINSIDE_DATA MemberIndex)
 {
 	THROW_NATIVE_EXCEPT("EXEPTION_CLASS: Not remove in const object", HEADER_EXCEPTION::NOT_REMOVE_FROM_CONST_OBJ);
 }
@@ -62,22 +58,22 @@ void EXEPTION_CLASS::EnumKey(INSTANCE_CLASS Object, LPINSIDE_DATA CurKey)
 {
 	if(CurKey->IsString)
 	{
-		if(*(LPHEADER_STRING)CurKey->Object == *propId)
+		if(*(LPHEADER_STRING)CurKey->Object == *(LPHEADER_STRING)propId)
 		{
 			*CurKey = EXECUTE_CONTEXT::ForThisThread->StringClass->RegisterCommonString(propDescription);
 			return;
 		}
 #ifdef _DEBUG
-		else if(*(LPHEADER_STRING)CurKey->Object == *propDescription)
+		else if(*(LPHEADER_STRING)CurKey->Object == *(LPHEADER_STRING)propDescription)
 		{
 			*CurKey = EXECUTE_CONTEXT::ForThisThread->StringClass->RegisterCommonString(PropCppFile);
 			return;
 		}
-		else if(*(LPHEADER_STRING)CurKey->Object == *PropCppFile)
+		else if(*(LPHEADER_STRING)CurKey->Object == *(LPHEADER_STRING)PropCppFile)
 		{
 			*CurKey = EXECUTE_CONTEXT::ForThisThread->StringClass->RegisterCommonString(PropLine);
 			return;
-		}else if(*(LPHEADER_STRING)CurKey->Object == *PropLine)
+		}else if(*(LPHEADER_STRING)CurKey->Object == *(LPHEADER_STRING)PropLine)
 		{
 			CurKey->SetNull();
 			return;
@@ -93,25 +89,13 @@ void EXEPTION_CLASS::EnumKey(INSTANCE_CLASS Object, LPINSIDE_DATA CurKey)
 	*CurKey = EXECUTE_CONTEXT::ForThisThread->StringClass->RegisterCommonString(propId);
 }
 
-ZELLI_INTEGER EXEPTION_CLASS::OperatorToInt(INSTANCE_CLASS Object)
-{
-	return 1;
-}
+ZELLI_INTEGER EXEPTION_CLASS::OperatorToInt(INSTANCE_CLASS Object) { return 1; }
 
-ZELLI_DOUBLE EXEPTION_CLASS::OperatorToDouble(INSTANCE_CLASS Object)
-{
-	return 1.0;
-}
+ZELLI_DOUBLE EXEPTION_CLASS::OperatorToDouble(INSTANCE_CLASS Object) { return 1.0; }
 
-INSIDE_DATA EXEPTION_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context,LPARG_FUNC Arg)
-{
-	return INSIDE_DATA::Null;
-}
+INSIDE_DATA EXEPTION_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context,LPARG_FUNC Arg) { return INSIDE_DATA::Null; }
 
-ZELLI_INTEGER EXEPTION_CLASS::GetLength(INSTANCE_CLASS Object)
-{
-	return 4;
-}
+ZELLI_INTEGER EXEPTION_CLASS::GetLength(INSTANCE_CLASS Object) { return 4; }
 
 bool EXEPTION_CLASS::OperatorEq(INSTANCE_CLASS ThisObj, const LPINSIDE_DATA SecondObj)
 {

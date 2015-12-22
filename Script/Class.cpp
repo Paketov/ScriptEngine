@@ -7,19 +7,24 @@
 #include "String.h"
 #include "Context.h"
 
-
-HEADER_CLASS::HEADER_CLASS()
+void HEADER_CLASS::Init(LPINTERNAL_CHAR NewNameForThisClass, LPSTRING_CLASS StringClassForNewName)
 {
 	IndexInClassArr = OBJECT::ClassList.AddElement();
 	if(IndexInClassArr == OBJECT::ClassList.NullIndex)
 		THROW_UNHANDLED_EXCEPTION("Not get ne index global table.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
 	OBJECT::ClassList[IndexInClassArr] = this;
-
+	if(NewNameForThisClass != nullptr)
+	{
+		if(StringClassForNewName == nullptr)
+			StringClassForNewName = EXECUTE_CONTEXT::ForThisThread->StringClass;
+		Name = OBJECT::New(StringClassForNewName, StringClassForNewName->RegisterString(NewNameForThisClass));
+	}
 #ifdef _FAST_CHECK_OBJ
 	INSIDE_DATA ForCheck = OBJECT::New(this, INSTANCE_CLASS(0));
 	__CheckVal = *((unsigned*)&ForCheck + 1);
 #endif
 }
+
 
 HEADER_CLASS::~HEADER_CLASS() { OBJECT::ClassList.RemoveAllInplement(this); }
 
@@ -39,6 +44,7 @@ INSIDE_DATA CLASS_MANAGER::CreateObject(LPINSIDE_DATA IdClass, LPEXECUTE_CONTEXT
 {
 	if(IdClass->IsString)
 		return CreateObject((LPHEADER_STRING)IdClass->Object, Context, Arg);
+
 	return INSIDE_DATA::Null;
 }
 
@@ -87,7 +93,7 @@ LPHEADER_CLASS CLASS_MANAGER::ClassRegister(LPHEADER_CLASS Class) HAS_THROW
 {	
 	if(!HASH_OBJECTS::ResizeBeforeInsert(ClassList))
 		THROW_UNHANDLED_EXCEPTION("Not alloc memory for new register class.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
-	return ClassList.Insert(Class)->Val = Class;
+	return ClassList.Insert(Class)->Val;
 }
 
 LPHEADER_CLASS CLASS_MANAGER::ClassUnregister(LPHEADER_STRING NameClass)
@@ -117,23 +123,17 @@ LPHEADER_CLASS CLASS_MANAGER::operator[](const LPINTERNAL_CHAR Id)
 	return Cell->Val;
 }
 
-inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexByKey(LPHEADER_CLASS k, unsigned short MaxCount) { return k->Name->Key % MaxCount;}
+inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexByKey(LPHEADER_CLASS k, unsigned short MaxCount) { return k->Name.Hash % MaxCount;}
 
-inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexByKey(LPHEADER_STRING k, unsigned short MaxCount)
-{
-	return k->Key % MaxCount;
-}
+inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexByKey(LPHEADER_STRING k, unsigned short MaxCount) { return k->Key % MaxCount; }
 
-inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexByKey(const LPINTERNAL_CHAR k, unsigned short MaxCount)
-{
-	return HEADER_STRING::Hash(k) %  MaxCount;
-}
+inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexByKey(const LPINTERNAL_CHAR k, unsigned short MaxCount) { return HEADER_STRING::Hash(k) %  MaxCount; }
 
-inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexInBound(unsigned short MaxCount) const { return Val->Name->Key % MaxCount; }
+inline unsigned short CLASS_MANAGER::_HASH_ELEM_OBJECTS::IndexInBound(unsigned short MaxCount) const { return Val->Name.Hash % MaxCount; }
 
-inline bool CLASS_MANAGER::_HASH_ELEM_OBJECTS::CmpKey(LPHEADER_STRING EnotherKeyVal) { return *Val->Name == *EnotherKeyVal; }
+inline bool CLASS_MANAGER::_HASH_ELEM_OBJECTS::CmpKey(LPHEADER_STRING EnotherKeyVal) { return *(LPHEADER_STRING)Val->Name == *EnotherKeyVal; }
 
-inline bool CLASS_MANAGER::_HASH_ELEM_OBJECTS::CmpKey(const LPINTERNAL_CHAR EnotherKeyVal) { return *Val->Name == EnotherKeyVal; }
+inline bool CLASS_MANAGER::_HASH_ELEM_OBJECTS::CmpKey(const LPINTERNAL_CHAR EnotherKeyVal) { return *(LPHEADER_STRING)Val->Name == EnotherKeyVal; }
 
 INSIDE_DATA DefaultCreateInstance(LPHEADER_CLASS , LPEXECUTE_CONTEXT , LPARG_FUNC ) { return INSIDE_DATA::Null; }
 
@@ -144,17 +144,35 @@ CLASS_MANAGER::CLASS_MANAGER()
 	ClassList.Init(5);
 }
 
-////////////////////////////////////
-//Constructor
-INSIDE_DATA HEADER_CLASS::CreateInstance(LPEXECUTE_CONTEXT, LPARG_FUNC) { return INSIDE_DATA::Null; }
 
-INSIDE_DATA HEADER_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context, void * Data) { return INSIDE_DATA::Null; }
+//Create instance by arg list
+INSIDE_DATA HEADER_CLASS::CreateInstance(LPINSIDE_DATA Args, NUMBER_ARG CountArg) { return INSIDE_DATA::Null; }
+
+//Create instance by internal represent class 
+INSIDE_DATA HEADER_CLASS::CreateInstance(void* InternalRepresentForClass) { return INSIDE_DATA::Null; }
+
 
 //for gc
 void HEADER_CLASS::SetAllInstanceToUnused(){}
-void HEADER_CLASS::MarkAsUsed(INSTANCE_CLASS){}
-void HEADER_CLASS::MarkAsUsed() {}
+
+inline void HEADER_CLASS::MarkAsUsed()
+{
+	Name.MarkAsUsed(); 
+	MarkClassAsUsed();
+}
+
+inline void HEADER_CLASS::MarkInstanceAsUsed(INSTANCE_CLASS) { }
+inline void HEADER_CLASS::MarkClassAsUsed() { }
+
 void HEADER_CLASS::FreeAllUnused(){}
+
+
+void HEADER_CLASS::SetName(LPINTERNAL_CHAR NewNameForThisClass, LPSTRING_CLASS StringClassForNewName)
+{
+	if(StringClassForNewName == nullptr)
+		StringClassForNewName = EXECUTE_CONTEXT::ForThisThread->StringClass;
+	Name = OBJECT::New(StringClassForNewName, StringClassForNewName->RegisterString(NewNameForThisClass));
+}
 
 //operators
 
@@ -248,10 +266,10 @@ INSIDE_DATA HEADER_CLASS::OperatorNot(INSTANCE_CLASS Object) { return INSIDE_DAT
 INSIDE_DATA HEADER_CLASS::OperatorBitNot(INSTANCE_CLASS Object) { return INSIDE_DATA::Null; }
 
 //Object++
-void HEADER_CLASS::OperatorInc(INSTANCE_CLASS){}
+void HEADER_CLASS::OperatorInc(INSTANCE_CLASS) {}
 
 //Object--
-void HEADER_CLASS::OperatorDec(INSTANCE_CLASS){}
+void HEADER_CLASS::OperatorDec(INSTANCE_CLASS) {}
 
 //Object.clone()
 INSIDE_DATA HEADER_CLASS::Clone(INSTANCE_CLASS) { return INSIDE_DATA::Null; }
@@ -276,6 +294,57 @@ ZELLI_INTEGER HEADER_CLASS::OperatorToInt(INSTANCE_CLASS) { return 0; }
 
 //(bool)Object
 bool HEADER_CLASS::OperatorToBool(INSTANCE_CLASS) { return false; }
+
+
+INSIDE_DATA HEADER_CLASS::FromString(const INTERNAL_CHAR* InputString, TSIZE_STR StrLen) { return INSIDE_DATA::Null; }
+
+//Convert object to string. Result in internal style string. String registred in BasicStringClass.
+LPHEADER_STRING HEADER_CLASS::ToString(INSTANCE_CLASS Object, LPSTRING_CLASS BasicStringClass) 
+{ 
+	std::basic_string<INTERNAL_CHAR> s;
+	ToString(Object, s);
+	return BasicStringClass->RegisterString(s.c_str());
+}
+
+//Convert object to string. Result place in c style string.
+void HEADER_CLASS::ToString(INSTANCE_CLASS Object, LPINTERNAL_CHAR Buf, TSIZE_STR SizeBuf)
+{
+	std::basic_string<INTERNAL_CHAR> s;
+	ToString(Object, s);
+	memcpy(Buf, s.c_str(), ((s.length() > SizeBuf)? SizeBuf: s.length()) * sizeof(INTERNAL_CHAR));
+}
+
+//Convert object to string. Result place in c++ style string.
+void HEADER_CLASS::ToString(INSTANCE_CLASS Object, std::basic_string<INTERNAL_CHAR>& Buf)
+{
+	std::basic_string<INTERNAL_CHAR> s;
+	TypeOf(s);
+	Buf = "<Instance of " + s + ">";
+}
+
+//Get type of object. Result in internal style string. String registred in BasicStringClass.
+LPHEADER_STRING HEADER_CLASS::TypeOf(LPSTRING_CLASS BasicStringClass)
+{
+	std::basic_string<INTERNAL_CHAR> s;
+	TypeOf(s);
+	return BasicStringClass->RegisterString(s.c_str());
+}
+
+//Get type of object. Result place in c style string.
+void HEADER_CLASS::TypeOf(LPINTERNAL_CHAR Buf, TSIZE_STR SizeBuf)
+{
+	std::basic_string<INTERNAL_CHAR> s;
+	TypeOf(s);
+	memcpy(Buf, s.c_str(), ((s.length() > SizeBuf)? SizeBuf: s.length()) * sizeof(INTERNAL_CHAR));
+}
+
+//Get type of object. Result place in c++ style string.
+void HEADER_CLASS::TypeOf(std::basic_string<INTERNAL_CHAR>& Buf) 
+{
+	Buf = "[";
+	Buf.append(LPHEADER_STRING(Name.Object)->Str, LPHEADER_STRING(Name.Object)->Len);
+	Buf += "]";
+}
 
 //Debug info
 SIZE_STR HEADER_CLASS::InfoObject(INSTANCE_CLASS, LPINTERNAL_CHAR Buffer, SIZE_STR LenInBuf)
@@ -309,3 +378,14 @@ void CLASS_MANAGER::FreeAllUnusedInstance()
 			return true;
 		});
 }
+
+void CLASS_MANAGER::MarkAllClassesAsUsed()
+{
+	ClassList.EnumValues( 
+		[](void*, CLASS_MANAGER::_HASH_ELEM_OBJECTS* Element)
+		{
+			Element->Val->MarkAsUsed();
+			return true;
+		});
+}
+

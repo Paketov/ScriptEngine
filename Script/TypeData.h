@@ -2,6 +2,7 @@
 #define _TYPEDATA_H_
 //Определения всех кодов типов данных
 #include <string.h>
+#include <string>
 #include <type_traits>
 #define ENABLE_DOUBLE_LONG_TYPEDATA
 #define SKIP_BYTES(Count, Ident)	unsigned char __skiping_array__ ## Ident[Count]
@@ -130,7 +131,8 @@ typedef	HEADER_CLASS		*LPHEADER_CLASS;
 
 typedef INSIDE_DATA			*LPINSIDE_DATA;
 
-typedef std::conditional<bool(sizeof(void*) > 4), unsigned long long, unsigned>::type HASH_VAL; 
+typedef std::conditional<bool(sizeof(void*) > 4), unsigned long long, unsigned>::type PLATFORM_WORD;
+typedef PLATFORM_WORD HASH_VAL; 
 
 typedef unsigned short		NUMBER_VAR, *LPNUMBER_VAR;
 typedef unsigned char		SHORT_NUMBER_VAR,*LPSHORT_NUMBER_VAR;
@@ -165,8 +167,8 @@ typedef unsigned short		EXCEPTION_TYPE, *LPEXCEPTION_TYPE;
 typedef char				CHECK_USES;
 typedef short				REL_ADDRESS;
 typedef char				SHORT_REL_ADDRESS;
-typedef unsigned short		TSIZE_STR, *LPTSIZE_STR;
-typedef unsigned short      TSIZE_METHOD, *LPTSIZE_METHOD;
+typedef PLATFORM_WORD		TSIZE_STR, *LPTSIZE_STR;
+typedef PLATFORM_WORD       TSIZE_METHOD, *LPTSIZE_METHOD;
 typedef unsigned int        OFFSET_METHOD, *LPOFFSET_METHOD;
 typedef unsigned int        TINDEX_METHOD, *LPTINDEX_METHOD;
 typedef unsigned int        TINDEX_STRING, *LPTINDEX_STRING;
@@ -259,7 +261,7 @@ public:
 #define DEF_IS_PROPERTY(Name, CommonData, Expression) class{CommonData;public:inline operator bool(){return Expression;}}Name
 
 //#define OBJECT_CASE INSIDE_DATA::TYPEDATA_STRING: case INSIDE_DATA::TYPEDATA_OBJECT: case INSIDE_DATA::TYPEDATA_FUNCTION
-#define OBJECT_CASE INSIDE_DATA::TYPEDATA_OBJECT: case INSIDE_DATA::TYPEDATA_STRING
+#define OBJECT_CASE INSIDE_DATA::TYPEDATA_OBJECT
 #define GC_MARK_VAR(Var) 	switch((Var).TypeData){case OBJECT_CASE:(Var).Object.MarkAsUsed();}
 
 
@@ -334,20 +336,23 @@ private:
 
 	class __QUERY_MEMBER_BY_INDEX;
 
+	
 	class __QUERY_MEMBER{
 		friend INSIDE_DATA;
 		LPINSIDE_DATA			Obj;
-		LPINSIDE_DATA			MemberIndex;
+		struct T{INSIDE_MAIN_TYPES;};
+		char MemberIndex[sizeof(T)];
 
-		inline __QUERY_MEMBER(LPINSIDE_DATA Obj, LPINSIDE_DATA Member)
+		inline __QUERY_MEMBER(LPINSIDE_DATA NewObj, LPINSIDE_DATA Member)
 		{
-		   this->Obj = Obj;
-		   this->MemberIndex = Member;
+		    Obj = NewObj;
+		   *(LPINSIDE_DATA)MemberIndex = *Member;
 		}
 	public:
 	    INSIDE_DATA operator=(INSIDE_DATA);
 		operator INSIDE_DATA();
-		__QUERY_MEMBER operator [](INSIDE_DATA & Member);
+
+		__QUERY_MEMBER operator [](INSIDE_DATA Member);
 		__QUERY_MEMBER_BY_INDEX operator [](ZELLI_INTEGER Member);
 	};
 
@@ -364,7 +369,7 @@ private:
 	public:
 	    INSIDE_DATA operator=(INSIDE_DATA);
 		operator INSIDE_DATA();
-		__QUERY_MEMBER operator [](INSIDE_DATA & Member);
+		__QUERY_MEMBER operator [](INSIDE_DATA Member);
 		__QUERY_MEMBER_BY_INDEX operator [](ZELLI_INTEGER Member);
 	};
 
@@ -372,6 +377,12 @@ private:
 		INSIDE_MAIN_TYPES;
 	public:
 		operator HASH_VAL();
+	};
+
+	class __PROP_IS_STRING{
+		INSIDE_MAIN_TYPES;
+	public:
+		operator bool();
 	};
 
 public:
@@ -388,8 +399,7 @@ public:
 		//Объекты
 		TYPEDATA_OBJECT = NAN_DOUBLE + 0x4,		//Объект
 		//Дескрипторы исключений
-		TYPEDATA_EXCEPT	= NAN_DOUBLE + 0x5,		//Переменная перехвата исключения
-		TYPEDATA_STRING = NAN_DOUBLE + 0x6
+		TYPEDATA_EXCEPT	= NAN_DOUBLE + 0x5
 	};
 
 
@@ -397,11 +407,9 @@ public:
 	{
 		INSIDE_MAIN_TYPES;
 
-		DEF_IS_PROPERTY(IsObject, INSIDE_MAIN_TYPES, (TypeData == TYPEDATA_OBJECT)||(TypeData == TYPEDATA_STRING));
+		DEF_IS_PROPERTY(IsObject, INSIDE_MAIN_TYPES, TypeData == TYPEDATA_OBJECT);
 
 		DEF_IS_PROPERTY(IsExceptionHandler, INSIDE_MAIN_TYPES, TypeData == TYPEDATA_EXCEPT);
-
-		DEF_IS_PROPERTY(IsString, INSIDE_MAIN_TYPES, TypeData == TYPEDATA_STRING);
 
 		DEF_IS_PROPERTY(IsNumber, INSIDE_MAIN_TYPES, TypeData <= TYPEDATA_INTEGER);
 
@@ -412,6 +420,8 @@ public:
 		DEF_IS_PROPERTY(IsNull, INSIDE_MAIN_TYPES, TypeData == TYPEDATA_NULL);
 
 		DEF_IS_PROPERTY(IsNotNull, INSIDE_MAIN_TYPES, TypeData != TYPEDATA_NULL);
+
+		__PROP_IS_STRING		IsString;
 
 		__LEN_PROP_DEF			Length;
 
@@ -429,22 +439,9 @@ public:
 
 	INSIDE_DATA(){}
 
-	inline INSIDE_DATA(const LPINSIDE_DATA Val)
-	{
-		*this = *Val;
-	}
+	inline INSIDE_DATA(const ZELLI_INTEGER Val) : TypeData(TYPEDATA_INTEGER), Integer(Val) {}
 
-	inline INSIDE_DATA(const ZELLI_INTEGER Val)
-	{
-		TypeData = TYPEDATA_INTEGER;
-		Integer = Val;
-	}
-
-	inline INSIDE_DATA(const unsigned int Val)
-	{
-		TypeData = TYPEDATA_INTEGER;
-		Integer = Val;
-	}
+	inline INSIDE_DATA(const unsigned int Val) : TypeData(TYPEDATA_INTEGER), Integer(Val) {}
 
 	inline INSIDE_DATA(const ZELLI_DOUBLE Val)
 	{
@@ -459,11 +456,7 @@ public:
 		}
 	}
 
-	inline INSIDE_DATA(const bool Val)
-	{
-		TypeData = TYPEDATA_INTEGER;
-		Integer = (ZELLI_INTEGER)Val;
-	}
+	inline INSIDE_DATA(const bool Val) : TypeData(TYPEDATA_INTEGER), Integer((ZELLI_INTEGER)Val){}
 
 	INSIDE_DATA(const OBJECT);
 
@@ -519,9 +512,9 @@ public:
 
 	INSIDE_DATA operator ~();
 
-	__QUERY_MEMBER_BY_INDEX operator[](ZELLI_INTEGER Index) {return __QUERY_MEMBER_BY_INDEX(this, Index);};
+	inline __QUERY_MEMBER_BY_INDEX operator[](ZELLI_INTEGER Index) {return __QUERY_MEMBER_BY_INDEX(this, Index);}
 
-	__QUERY_MEMBER operator[](INSIDE_DATA & Member) {return __QUERY_MEMBER(this, &Member);};
+	inline __QUERY_MEMBER operator[](INSIDE_DATA Member) {return __QUERY_MEMBER(this, &Member);}
 
 	INSIDE_DATA operator()(LPEXECUTE_CONTEXT Context, LPARG_FUNC Arg = &ARG_FUNC::EmptyArgs) HAS_THROW;
 
@@ -535,7 +528,19 @@ public:
 
 	void In(LPINSIDE_DATA Var);
 
-	void MarkAsUsed();
+	OBJECT ToString(LPSTRING_CLASS BasicClass);
+
+	void ToString(std::basic_string<INTERNAL_CHAR>& Str);
+
+	void ToString(INTERNAL_CHAR* StrBuf, TSIZE_STR BufLen);
+
+	OBJECT TypeOf(LPSTRING_CLASS BasicClass);
+
+	void TypeOf(std::basic_string<INTERNAL_CHAR>& Str);
+
+	void TypeOf(INTERNAL_CHAR* StrBuf, TSIZE_STR BufLen);
+
+	unsigned TypeId();
 
 	inline void SetNull() { TypeData = TYPEDATA_NULL; }
 

@@ -85,7 +85,7 @@ void OBJECT_CLASS::OperatorRemoveByIndex(INSTANCE_CLASS Object, ZELLI_INTEGER Me
 
 ZELLI_INTEGER OBJECT_CLASS::GetLength(INSTANCE_CLASS Object) { return ((LPOBJECT_HEADER)Object)->NodeTable.CountUsed; }
 
-void OBJECT_CLASS::MarkAsUsed(INSTANCE_CLASS Object)
+void OBJECT_CLASS::MarkInstanceAsUsed(INSTANCE_CLASS Object)
 {
 	LPOBJECT_HEADER Obj = ((LPOBJECT_HEADER)Object);
 	if(Obj->ForCheckUses == CurCheckUses)
@@ -101,6 +101,10 @@ void OBJECT_CLASS::MarkAsUsed(INSTANCE_CLASS Object)
 			return true;
 		}
 	);
+}
+
+void OBJECT_CLASS::MarkClassAsUsed(INSTANCE_CLASS Object)
+{
 }
 
 void OBJECT_CLASS::FreeAllUnused()
@@ -125,9 +129,8 @@ LPOBJECT_HEADER __fastcall OBJECT_CLASS::__AllocHeader(LPOBJECT_CLASS This)
 	return NewHeader;
 }
 
-OBJECT_CLASS::OBJECT_CLASS(LPSTRING_CLASS ListStrings)
+OBJECT_CLASS::OBJECT_CLASS(LPSTRING_CLASS ListStrings): HEADER_CLASS(this, "Object", ListStrings)
 {
-
 	CurCheckUses = 0;
 	LIST_HEADER<OBJECT_HEADER>::Close(&ListObject);
 	LIST_HEADER<OBJECT_HEADER>::Close(&ListUnusedObject);
@@ -135,14 +138,6 @@ OBJECT_CLASS::OBJECT_CLASS(LPSTRING_CLASS ListStrings)
 	CountHeaderInQueue = 0;
 	MaxCountHeaderInQueue = 100;
 	SwitchToAddMode();
-	TrueAsString = ListStrings->RegisterString("true");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(TrueAsString);
-
-	FalseAsString = ListStrings->RegisterString("false");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(FalseAsString);
-
-	Name = ListStrings->RegisterString("Object");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(Name);
 }
 
 void OBJECT_CLASS::EnumKey(INSTANCE_CLASS Object, LPINSIDE_DATA CurKey)
@@ -205,4 +200,10 @@ bool OBJECT_CLASS::OperatorEq(INSTANCE_CLASS ThisObj, LPINSIDE_DATA SecondObj)
 	if(SecondObj->IsObject)
 		return ThisObj == SecondObj->Object;
 	return false;
+}
+
+
+HASH_VAL OBJECT_CLASS::GetHash(INSTANCE_CLASS Instance)
+{
+	return (HASH_VAL)Instance;
 }

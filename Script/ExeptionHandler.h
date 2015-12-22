@@ -7,13 +7,12 @@
 
 class EXEPTION_CLASS:  public HEADER_CLASS
 {	
-	friend HEADER_EXCEPTION;
-
-    static LPHEADER_STRING			propId;
-	static LPHEADER_STRING			propDescription;
+	friend			HEADER_EXCEPTION;
+    OBJECT			propId;
+	OBJECT			propDescription;
 #ifdef _DEBUG
-	static LPHEADER_STRING			PropCppFile;
-	static LPHEADER_STRING			PropLine;
+	OBJECT			PropCppFile;
+	OBJECT			PropLine;
 #endif
 
 public:
@@ -22,12 +21,11 @@ public:
 
 	virtual INSIDE_DATA CreateInstance(LPEXECUTE_CONTEXT, LPARG_FUNC);
 
-
 	virtual INSIDE_DATA ReadMember(INSTANCE_CLASS, const LPINSIDE_DATA);
 
 	virtual void WriteMember(INSTANCE_CLASS, const LPINSIDE_DATA, const LPINSIDE_DATA);
 
-	virtual void RemoveElement(INSTANCE_CLASS, const LPINSIDE_DATA);
+	virtual void RemoveMember(INSTANCE_CLASS, const LPINSIDE_DATA);
 
 	virtual SIZE_STR InfoObject(INSTANCE_CLASS, LPINTERNAL_CHAR, SIZE_STR);
 
@@ -40,6 +38,8 @@ public:
 	virtual ZELLI_INTEGER OperatorToInt(INSTANCE_CLASS);
 
 	virtual ZELLI_DOUBLE OperatorToDouble(INSTANCE_CLASS);
+
+	virtual void MarkClassAsUsed();
 
 };
 
@@ -110,10 +110,7 @@ public:
 #endif
 	} STATIC_INIT;
 
-	HEADER_EXCEPTION()
-	{
-
-	}
+	HEADER_EXCEPTION() {}
 
 	HEADER_EXCEPTION(LPHEADER_STRING Description, TYPE_ENUM  Id)
 	{

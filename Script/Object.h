@@ -5,7 +5,13 @@
 #include "TypeData.h"
 #include "HashTable.h"
 #include "DynamicArray.h"
+#include <string>
 
+template <class INSIDE_T>
+class OBJECT_;
+
+
+typedef OBJECT_<INSIDE_DATA> OBJECT, *LPOBJECT;
 //Шаблон экземпляра объекта
 template <class INSIDE_T>
 class OBJECT_
@@ -25,11 +31,11 @@ public:
 		inline operator LPHEADER_CLASS() { return (LPHEADER_CLASS)ClassList[Index]; }
 		template<typename T>
 		inline operator T*() { return (T*)ClassList[Index]; }
-		inline operator ARR_FOR_CLASS::TINDEX() { return Index; }
+		inline operator ARR_FOR_CLASS::TINDEX() const { return Index; }
 		inline unsigned short operator =(const ARR_FOR_CLASS::TINDEX i) { return Index = i; }
 		inline LPHEADER_CLASS operator =(const LPHEADER_CLASS h) { Index = h->IndexInClassArr; return h; }
-		inline bool operator ==(PROTOTYPE & Enother) { return Index == Enother.Index; }
-		inline bool operator !=(PROTOTYPE & Enother) { return Index != Enother.Index; }
+		inline bool operator ==(const PROTOTYPE & Enother) const { return Index == Enother.Index; }
+		inline bool operator !=(const PROTOTYPE & Enother) const { return Index != Enother.Index; }
 	};
 
 #define __OBJECT_FILEDS_DEF			\
@@ -126,13 +132,22 @@ public:
 	inline INSIDE_T operator ~() { return Prototype->OperatorBitNot(Object); }
 	inline INSIDE_T operator[](ZELLI_INTEGER Index) { return Prototype->OperatorReadByIndex(Object, Index); }
 	inline INSIDE_T operator[](const INSIDE_T & Index) { return Prototype->OperatorReadByIndex(Object, (const LPINSIDE_T)&Index); }
+
+	OBJECT ToString(LPSTRING_CLASS UsingStringClass) { return OBJECT::New(UsingStringClass, Prototype->ToString(Object, UsingStringClass)); }
+	void ToString(INTERNAL_CHAR* StrBuf, TSIZE_STR LenStrBuf) { Prototype->ToString(Object, StrBuf, LenStrBuf); }
+	void ToString(std::basic_string<INTERNAL_CHAR>& StrDest) { Prototype->ToString(Object, StrDest); }
+
+	OBJECT TypeOf(LPSTRING_CLASS UsingStringClass) { return OBJECT::New(UsingStringClass, Prototype->TypeOf(UsingStringClass)); }
+	void TypeOf(INTERNAL_CHAR* StrBuf, TSIZE_STR LenStrBuf) { Prototype->TypeOf(StrBuf, LenStrBuf); }
+	void TypeOf(std::basic_string<INTERNAL_CHAR>& StrDest) { Prototype->TypeOf(StrDest); }
+
 	inline SIZE_STR Info(LPINTERNAL_CHAR Buffer, SIZE_STR LenInBuf) { return Prototype->InfoObject(Object, Buffer, LenInBuf); }
 };
 
 template <class INSIDE_T>
 const INSTANCE_CLASS OBJECT_<INSIDE_T>::Null = nullptr;
 
-typedef OBJECT_<INSIDE_DATA> OBJECT, *LPOBJECT;
+
 
 
 

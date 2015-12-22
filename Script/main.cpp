@@ -55,9 +55,30 @@ int main(int argc, char * argv[])
 		//////////////////
 		EXECUTE_CONTEXT  l(1024,6000);
 		
+
+
+
 		INSIDE_DATA t;
 		LPOBJECT_CLASS ObjClass = new OBJECT_CLASS(l.StringClass);
 		l.ObjManager->ClassRegister(ObjClass);
+
+		INSIDE_DATA NameWrite = OBJECT::New(l.StringClass, l.StringClass->RegisterString("write"));
+		l.GlobalObject[NameWrite] = NameWrite;
+		t = l.GlobalObject[NameWrite];
+	
+
+
+		t = OBJECT::New(l.StringClass, l.StringClass->RegisterString("write"));
+
+		for(;;)
+		{
+		    t = t + t;
+			l.SetAllInstanceToUnused();
+			l.MarkAllInstance();
+			t.MarkAsUsed();
+			l.FreeAllUnusedInstance();
+		}
+
 		LPHEADER_STRING WriteGlobalFunc = l.StringClass->RegisterString("write");
 		t = PrintVal;
 		//l.GlobalObject.Object.WriteMember(WriteGlobalFunc,&t);
@@ -73,7 +94,6 @@ int main(int argc, char * argv[])
 		(*File.MainMethod)(&l);
 
 		char Buffer[5000] = "";
-		l.ConstValues.Object.Prototype->InfoClass(Buffer, sizeof(Buffer));
 
 		l.GlobalObject.Object.Prototype->InfoClass(Buffer, sizeof(Buffer));
 

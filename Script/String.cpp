@@ -1,47 +1,20 @@
 #include "String.h"
 #include "Method.h"
 #include "ExString.h"
-#include "ConstScope.h"
 
 
-STRING_CLASS::STRING_CLASS()
-{
+unsigned STRING_CLASS::Id = std::get_id_for_type<STRING_CLASS>();
+
+STRING_CLASS::STRING_CLASS() : HEADER_CLASS(this)
+{	
 	CurCheckUses = 0;
 	if(!ListStrings.New(ListStrings, 5))
 		THROW_UNHANDLED_EXCEPTION("STRING_CLASS: not alloc memory for list strings.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
 	ListStrings.Init(5);
 
-	NullAsString = RegisterString("null");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(NullAsString);
-
+	SetName("String", this);
 	EmptyString = RegisterString("");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(EmptyString);
-
-	ObjectAsString = RegisterString("[Object]");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(ObjectAsString);
-
-	NumberAsString = RegisterString("[Number]");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(NumberAsString);
-
-	StringAsString = RegisterString("[String]");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(StringAsString);
-
-	FunctionAsString = RegisterString("[Function]");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(FunctionAsString);
-
-	ExceptionHandlerAsString = RegisterString("[ExceHandler]");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(ExceptionHandlerAsString);
-
-	Name = RegisterString("String");
-
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(Name);
-
-	EXECUTE_CONTEXT::FunctionClass.Name = RegisterString("Function");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(EXECUTE_CONTEXT::FunctionClass.Name);
-
-	EXECUTE_CONTEXT::MainConstScope.Name = RegisterString("__ConstScope");
-	EXECUTE_CONTEXT::MainConstScope.WriteElement(EXECUTE_CONTEXT::MainConstScope.Name);
-
+	EXECUTE_CONTEXT::FunctionClass.SetName("Function", this);
 	STRING_CLASS::InitDefaultMethods(&EXECUTE_CONTEXT::FunctionClass);
 }
 
@@ -58,103 +31,49 @@ void STRING_CLASS::AddMember(LPINTERNAL_CHAR Name, INSIDE_DATA Val)
 	WriteMember(OBJECT::Null, &Data, &Val);
 }
 
-LPHEADER_STRING STRING_CLASS::TypeOf(LPINSIDE_DATA Type)
+
+//Convert row string to object
+INSIDE_DATA STRING_CLASS::FromString(const INTERNAL_CHAR* InputString, TSIZE_STR StrLen) 
 {
-	switch(Type->TypeData)
-	{
-	case OBJECT_CASE:
-		return RegisterCommonString(Type->Class->Name);
-	case INSIDE_DATA::TYPEDATA_EXCEPT:
-		return ExceptionHandlerAsString;
-	case INSIDE_DATA::TYPEDATA_NULL:
-		return NullAsString;
-	case INSIDE_DATA::TYPEDATA_INTEGER:
-	default:
-		return NumberAsString;
-	}
+	return OBJECT::New(this, RegisterString(InputString, StrLen));
 }
 
-LPHEADER_STRING STRING_CLASS::ToString(LPINSIDE_DATA Source)
+//Convert object to string. Result in internal style string. String registred in BasicStringClass.
+LPHEADER_STRING STRING_CLASS::ToString(INSTANCE_CLASS Object, LPSTRING_CLASS BasicStringClass)
 {
-	INTERNAL_CHAR Buf[15];
-	TSIZE_STR LenBuf;
-	switch(Source->TypeData)
-	{
-	case INSIDE_DATA::TYPEDATA_NULL:
-		return NullAsString;
-	case INSIDE_DATA::TYPEDATA_INTEGER:
-		LenBuf = NumberToString(Source->Integer, Buf, sizeof(Buf) / sizeof(INTERNAL_CHAR)).Result;
-		break;
-	case INSIDE_DATA::TYPEDATA_STRING:
-		return (LPHEADER_STRING)Source->Object;
-	case INSIDE_DATA::TYPEDATA_OBJECT:
-		return ObjectAsString;
-	case INSIDE_DATA::TYPEDATA_EXCEPT:
-		return ExceptionHandlerAsString;
-	default://double
-		LenBuf = NumberToString(Source->Double, Buf, sizeof(Buf) / sizeof(INTERNAL_CHAR)).Result;
-	}
-	return OBJECT::New(this, RegisterString(Buf, LenBuf));
-};
+	if(BasicStringClass == this)
+		return LPHEADER_STRING(Object);
+	return BasicStringClass->RegisterString(LPHEADER_STRING(Object)->Str, LPHEADER_STRING(Object)->Len);
+}
 
-LPINTERNAL_CHAR STRING_CLASS::ToString(LPINSIDE_DATA Source,LPINTERNAL_CHAR Buf, LPTSIZE_STR Len)
+//Convert object to string. Result place in c style string.
+void STRING_CLASS::ToString(INSTANCE_CLASS Object, LPINTERNAL_CHAR Buf, TSIZE_STR SizeBuf)
 {
-	LPINTERNAL_CHAR EndChar;
-	switch(Source->TypeData)
-	{
-	case INSIDE_DATA::TYPEDATA_NULL:
-		*Len = NullAsString->Len;
-		return NullAsString->Str;
-	case INSIDE_DATA::TYPEDATA_INTEGER:
-		EndChar = Buf + NumberToString(Source->Integer, Buf, *Len);
-		break;
-	case INSIDE_DATA::TYPEDATA_STRING:
-		*Len = ((LPHEADER_STRING)Source->Object)->Len;
-		return ((LPHEADER_STRING)Source->Object)->Str;
-	case INSIDE_DATA::TYPEDATA_OBJECT:
-		*Len = ObjectAsString->Len;
-		return ObjectAsString->Str;
-	case INSIDE_DATA::TYPEDATA_EXCEPT:
-		*Len = ExceptionHandlerAsString->Len;
-		return ExceptionHandlerAsString->Str;
-	default:
-		EndChar = Buf + NumberToString(Source->Double, Buf, *Len).Result;
-		break;
-	}
-	*Len = (unsigned)(EndChar - Buf) / sizeof(INTERNAL_CHAR);
-	return Buf;
-};
+	LPHEADER_STRING(Object)->Clone(Buf, SizeBuf);
+}
+
+//Convert object to string. Result place in c++ style string.
+void STRING_CLASS::ToString(INSTANCE_CLASS Object, std::basic_string<INTERNAL_CHAR>& Buf) { LPHEADER_STRING(Object)->Clone(Buf); }
+
+//Get type of object. Result in internal style string. String registred in BasicStringClass.
+LPHEADER_STRING STRING_CLASS::TypeOf(LPSTRING_CLASS BasicStringClass) { return BasicStringClass->RegisterString("[String]"); }
+
+//Get type of object. Result place in c style string.
+void STRING_CLASS::TypeOf(LPINTERNAL_CHAR Buf, TSIZE_STR SizeBuf) { StringCopy(Buf, "[String]", SizeBuf); }
+
+//Get type of object. Result place in c++ style string.
+void STRING_CLASS::TypeOf(std::basic_string<INTERNAL_CHAR>& Buf) { Buf = "[String]"; }
 
 
 INSIDE_DATA STRING_CLASS::CreateInstance(LPEXECUTE_CONTEXT Context, LPARG_FUNC Arg)
 {
 	if(Arg->CountArg == 0)
 		return OBJECT::New(this, EmptyString);
-
 	LPINSIDE_DATA Source = Context->GetArg(Arg->Args[0]);
-	INTERNAL_CHAR Buf[15];
-	LPINTERNAL_CHAR EndChar;
-
-	switch(Source->TypeData)
-	{
-	case INSIDE_DATA::TYPEDATA_NULL:
-		return OBJECT::New(this, NullAsString);
-	case INSIDE_DATA::TYPEDATA_INTEGER:
-		EndChar = Buf + NumberToString(Source->Integer, Buf, sizeof(Buf) / sizeof(INTERNAL_CHAR)).Result;
-		break;
-	case INSIDE_DATA::TYPEDATA_STRING:
-		return Source->Object;
-	case INSIDE_DATA::TYPEDATA_OBJECT:
-		return OBJECT::New(this,ObjectAsString);
-	case INSIDE_DATA::TYPEDATA_EXCEPT:
-		return OBJECT::New(this,ExceptionHandlerAsString);
-	default:
-		EndChar = Buf + NumberToString(Source->Double,  Buf, sizeof(Buf) / sizeof(INTERNAL_CHAR)).Result;
-	}
-	return OBJECT::New(this, RegisterString(Buf));
+	return OBJECT::New(this, ToString(Source));
 }
 
-void STRING_CLASS::FreeAllUnusedInstance()
+void STRING_CLASS::FreeAllUnused()
 {
 	ListStrings.EnumDelete(
 			[](void* CheckUses, STRING_CLASS::_HASH_ELEM_STRING* Element) -> bool
@@ -175,24 +94,15 @@ void STRING_CLASS::FreeAllUnusedInstance()
 ZELLI_DOUBLE STRING_CLASS::OperatorToDouble(INSTANCE_CLASS Object)
 {
 	ZELLI_DOUBLE Result;
-	StringToNumber(&Result, ((LPHEADER_STRING)Object)->Str, ((LPHEADER_STRING)Object)->Len);
+	StringToNumber(&Result, LPHEADER_STRING(Object)->Str, LPHEADER_STRING(Object)->Len);
 	return Result;
 }
 
 ZELLI_INTEGER STRING_CLASS::OperatorToInt(INSTANCE_CLASS Object)
 {
 	ZELLI_INTEGER Result;
-	StringToNumber(&Result, ((LPHEADER_STRING)Object)->Str, ((LPHEADER_STRING)Object)->Len);
+	StringToNumber(&Result, LPHEADER_STRING(Object)->Str, LPHEADER_STRING(Object)->Len);
 	return Result;
-}
-
-LPHEADER_STRING STRING_CLASS::RegisterCommonString(LPHEADER_STRING String)
-{
-	if(!HASH_STRINGS::ResizeBeforeInsert(ListStrings))
-		THROW_UNHANDLED_EXCEPTION("Not alloc memory for new string.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
-	auto NewHeader = ListStrings.Insert(String)->Val;
-	NewHeader->Uses = CurCheckUses;
-	return NewHeader;
 }
 
 LPHEADER_STRING STRING_CLASS::RegisterString(LPHEADER_STRING String)
@@ -204,19 +114,19 @@ LPHEADER_STRING STRING_CLASS::RegisterString(LPHEADER_STRING String)
 	return NewHeader;
 }
 
-LPHEADER_STRING STRING_CLASS::RegisterString(LPINTERNAL_CHAR String)
+LPHEADER_STRING STRING_CLASS::RegisterString(const INTERNAL_CHAR* String)
 {
 	if(!HASH_STRINGS::ResizeBeforeInsert(ListStrings))
 		THROW_UNHANDLED_EXCEPTION("Not alloc memory for new string.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
 	TSIZE_STR Len;
 	HASH_VAL Hash = HEADER_STRING::Hash(String, &Len);
-	_FOR_SET_ROW_STRING v = { String, Len, Hash};
+	_FOR_SET_ROW_STRING v = {String, Len, Hash};
 	auto NewHeader = ListStrings.Insert(&v)->Val;
 	NewHeader->Uses = CurCheckUses;
 	return NewHeader;
 }
 
-LPHEADER_STRING STRING_CLASS::RegisterString(LPINTERNAL_CHAR String, TSIZE_STR Len)
+LPHEADER_STRING STRING_CLASS::RegisterString(const INTERNAL_CHAR* String, TSIZE_STR Len)
 {
 	if(!HASH_STRINGS::ResizeBeforeInsert(ListStrings))
 		THROW_UNHANDLED_EXCEPTION("Not alloc memory for new string.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
@@ -226,7 +136,7 @@ LPHEADER_STRING STRING_CLASS::RegisterString(LPINTERNAL_CHAR String, TSIZE_STR L
 	return NewHeader;
 }
 
-LPHEADER_STRING STRING_CLASS::IsHaveString(LPINTERNAL_CHAR String)
+LPHEADER_STRING STRING_CLASS::IsHaveString(const INTERNAL_CHAR* String)
 {
 	TSIZE_STR Len;
 	HASH_VAL Hash = HEADER_STRING::Hash(String, &Len);
@@ -245,19 +155,26 @@ LPHEADER_STRING STRING_CLASS::IsHaveString(LPHEADER_STRING String)
 	return Cell->Val;
 }
 
-void STRING_CLASS::MarkAsUsed() { CLASS_SCOPE::MarkAllMembers(); }
+HASH_VAL STRING_CLASS::GetHash(INSTANCE_CLASS Instance) { return LPHEADER_STRING(Instance)->Key; }
 
-void STRING_CLASS::MarkAsUsed(INSTANCE_CLASS Object) { ((LPHEADER_STRING)Object)->Uses = CurCheckUses; }
 
-ZELLI_INTEGER STRING_CLASS::GetLength(INSTANCE_CLASS Object) { return ((LPHEADER_STRING)Object)->Len; }
+void STRING_CLASS::MarkClassAsUsed() 
+{ 
+	CLASS_SCOPE::MarkAllMembers();
+	MarkAsUsed(EmptyString);
+}
+
+void STRING_CLASS::MarkInstanceAsUsed(INSTANCE_CLASS Object) { LPHEADER_STRING(Object)->Uses = CurCheckUses; }
+
+ZELLI_INTEGER STRING_CLASS::GetLength(INSTANCE_CLASS Object) { return LPHEADER_STRING(Object)->Len; }
 
 INSIDE_DATA STRING_CLASS::OperatorAdd(INSTANCE_CLASS Object, const LPINSIDE_DATA Var2)
 {
 	INTERNAL_CHAR Buffer2[10];
 	TSIZE_STR CountInBuff1, CountInBuff2;
-	LPINTERNAL_CHAR Str1 = ((LPHEADER_STRING)Object)->Str;
-	CountInBuff1 = ((LPHEADER_STRING)Object)->Len;
-	LPINTERNAL_CHAR Str2 = ToString(Var2,Buffer2,&CountInBuff2);
+	LPINTERNAL_CHAR Str1 = LPHEADER_STRING(Object)->Str;
+	CountInBuff1 = LPHEADER_STRING(Object)->Len;
+	LPINTERNAL_CHAR Str2 = ToString(Var2, Buffer2, &CountInBuff2);
 	HASH_VAL Hash = 0;
 	Hash = HEADER_STRING::Hash(Hash, Str1, CountInBuff1);
 	Hash = HEADER_STRING::Hash(Hash, Str2, CountInBuff2);
@@ -308,7 +225,7 @@ INSIDE_DATA ZELLI_API STRING_CLASS::IndexOf(LPINSIDE_DATA ThisStr, LPEXECUTE_CON
 	LPINTERNAL_CHAR Str1 = ((LPHEADER_STRING)ThisStr->Object)->Str;
 	CountInBuff1 = ((LPHEADER_STRING)ThisStr->Object)->Len;
 
-	LPINTERNAL_CHAR Str2 = CurClass->ToString(Var2,Buffer2,&CountInBuff2);
+	LPINTERNAL_CHAR Str2 = CurClass->ToString(Var2, Buffer2, &CountInBuff2);
 	LPINTERNAL_CHAR Result = (LPINTERNAL_CHAR)MemSrch(Str1, CountInBuff1, Str2, CountInBuff2);
 	if(Result == nullptr)
 		return -1;
@@ -373,8 +290,8 @@ bool STRING_CLASS::_HASH_ELEM_STRING::SetKey(STRING_CLASS::_FOR_CAT* k)
 	LPHEADER_STRING NewHeader = HEADER_STRING::AllocNew(k->Len1 + k->Len2);
 	if(!NewHeader)
 		THROW_UNHANDLED_EXCEPTION("Not alloc memory for new string.", UNHANDLED_EXCEPTION::NOT_ALLOC_MEMORY);
-	memcpy(NewHeader->Str, k->Str1, k->Len1);
-	memcpy(NewHeader->Str + k->Len1, k->Str2, k->Len2);
+	memcpy(NewHeader->Str, k->Str1, k->Len1 * sizeof(INTERNAL_CHAR));
+	memcpy(NewHeader->Str + k->Len1, k->Str2, k->Len2 * sizeof(INTERNAL_CHAR));
 	NewHeader->Len = k->Len1 + k->Len2;
 	NewHeader->Key = k->Hash;
 	Val = NewHeader;
@@ -383,17 +300,36 @@ bool STRING_CLASS::_HASH_ELEM_STRING::SetKey(STRING_CLASS::_FOR_CAT* k)
 
 LPHEADER_STRING HEADER_STRING::AllocNew(TSIZE_STR SizeAllocString)
 {
-	unsigned NewSize = OFFSET_FIELD(HEADER_STRING, Str) + SizeAllocString;
+
+	TSIZE_STR NewSize = OFFSET_FIELD(HEADER_STRING, Str) + SizeAllocString;
 	void * v;
-	if((v = MEM_ALLOC(NewSize)) == NULL)
+	if((v = MEM_ALLOC(NewSize)) == nullptr)
 	{
 		if(EXECUTE_CONTEXT::StaticCleaning())
-			return  (LPHEADER_STRING)MEM_ALLOC(NewSize);
-		else
-			return NULL;
+		{
+			if((v = MEM_ALLOC(NewSize)) != nullptr)
+				return (LPHEADER_STRING)v;
+		}
+		return NULL;
 	}
 	return (LPHEADER_STRING)v;
-} 
+}
+
+LPHEADER_STRING HEADER_STRING::New(const LPINTERNAL_CHAR InVal)
+{
+	TSIZE_STR Len;
+	HASH_VAL h = Hash(InVal, &Len);
+	LPHEADER_STRING NewHeder = AllocNew(Len);
+	NewHeder->Key = h;
+	NewHeder->Len = Len;
+	memcpy(NewHeder->Str, InVal, Len * sizeof(INTERNAL_CHAR));
+	return NewHeder;
+}
+
+LPHEADER_STRING HEADER_STRING::New(std::basic_string<INTERNAL_CHAR>& InVal)
+{
+	 return HEADER_STRING::New(LPINTERNAL_CHAR(InVal.c_str()));
+}
 
 SIZE_STR STRING_CLASS::InfoObject(INSTANCE_CLASS Obj, LPINTERNAL_CHAR Buffer, SIZE_STR LenInBuf)
 {
@@ -406,7 +342,7 @@ SIZE_STR STRING_CLASS::InfoClass(LPINTERNAL_CHAR Buffer, SIZE_STR LenInBuf)
 	SIZE_STR CurLen = LenInBuf, Len2;
 	LPINTERNAL_CHAR Cur = Buffer;
 
-	Len2 = toz(sprintf_s(Buffer, CurLen, "%.*s\n", Name->Len, Name->Str));
+	Len2 = toz(sprintf_s(Buffer, CurLen, "%.*s\n", ((LPHEADER_STRING)Name.Object)->Len, ((LPHEADER_STRING)Name.Object)->Str));
 	CurLen -= Len2;
 	Buffer += Len2;
 

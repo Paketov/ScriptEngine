@@ -5,6 +5,8 @@
 #include "HashTable.h"
 #include "DynamicArray.h"
 #include "Object.h"
+#include "ExTypeTraits.h"
+#include <string>
 
 /*
 *		HEADER_CLASS - Template for all registred classes.
@@ -41,14 +43,20 @@
 */
 
 #define _FAST_CHECK_OBJ
-class HEADER_CLASS
+
+class HEADER_CLASS 
 {	
 	friend CLASS_MANAGER;
 	friend OBJECT;
+
+	void Init(LPINTERNAL_CHAR NewNameForThisClass, LPSTRING_CLASS StringClassForNewName);
 public:
-	//Name of class.
-	LPHEADER_STRING					Name;
-	OBJECT::ARR_FOR_CLASS::TINDEX	IndexInClassArr;
+
+	unsigned IdClass;									//
+	OBJECT Name;										//String were placed name of class
+	OBJECT::ARR_FOR_CLASS::TINDEX	IndexInClassArr;	//Index in class array
+
+	void SetName(LPINTERNAL_CHAR NewNameForThisClass, LPSTRING_CLASS StringClassForNewName = nullptr);
 
 	inline bool IsInstance(LPOBJECT lpObject) const { return lpObject->Prototype == IndexInClassArr; }
 	inline bool IsInstance(OBJECT & Object) const { return Object.Prototype == IndexInClassArr; }
@@ -65,16 +73,25 @@ public:
 	inline bool IsInstance(INSIDE_DATA & Data) { return Data.IsObject && (Data.Object.Prototype == IndexInClassArr); }
 #endif 
 
-	HEADER_CLASS();
+	template<typename Claz>
+	HEADER_CLASS(Claz*, LPINTERNAL_CHAR NewNameForThisClass = nullptr, LPSTRING_CLASS StringClassForNewName = nullptr)
+	{
+		IdClass = std::get_id_for_type<Claz>();
+		Init(NewNameForThisClass, StringClassForNewName);
+	}
+
 
 	~HEADER_CLASS();
 
 	//for gc
-	virtual void SetAllInstanceToUnused();
-	virtual void MarkAsUsed();
-	virtual void MarkAsUsed(INSTANCE_CLASS Object);
-	virtual void FreeAllUnused();
+	inline void MarkAsUsed();								//Mark internal component class as used
+	inline void MarkAsUsed(INSTANCE_CLASS Object) { MarkInstanceAsUsed(Object); }//Mark instance class as used
 
+
+	virtual void SetAllInstanceToUnused();
+	virtual void MarkClassAsUsed();
+	virtual void MarkInstanceAsUsed(INSTANCE_CLASS);
+	virtual void FreeAllUnused();
 	//operators
 
 	// = Object.MemberIndex
@@ -165,6 +182,7 @@ public:
 	//Object.length
 	virtual ZELLI_INTEGER GetLength(INSTANCE_CLASS Object);
 
+	//Get hash of object
 	virtual HASH_VAL GetHash(INSTANCE_CLASS Instance);
 
 	//CurKey in Object
@@ -182,12 +200,36 @@ public:
 	//(bool)Object
 	virtual bool OperatorToBool(INSTANCE_CLASS Object);
 
+	//Convert row string to object
+	virtual INSIDE_DATA FromString(const INTERNAL_CHAR* InputString, TSIZE_STR StrLen);
+
+	//Convert object to string. Result in internal style string. String registred in BasicStringClass.
+	virtual LPHEADER_STRING ToString(INSTANCE_CLASS Object, LPSTRING_CLASS BasicStringClass);
+
+	//Convert object to string. Result place in c style string.
+	virtual void ToString(INSTANCE_CLASS Object, LPINTERNAL_CHAR Buf, TSIZE_STR SizeBuf);
+
+	//Convert object to string. Result place in c++ style string.
+	virtual void ToString(INSTANCE_CLASS Object, std::basic_string<INTERNAL_CHAR>& Buf);
+
+	//Get type of prototype. Result in internal style string. String registred in BasicStringClass.
+	virtual LPHEADER_STRING TypeOf(LPSTRING_CLASS BasicStringClass);
+
+	//Get type of prototype. Result place in c style string.
+	virtual void TypeOf(LPINTERNAL_CHAR Buf, TSIZE_STR SizeBuf);
+
+	//Get type of prototype. Result place in c++ style string.
+	virtual void TypeOf(std::basic_string<INTERNAL_CHAR>& Buf);
+
 	//Constructor
-	INSIDE_DATA CreateInstance(LPARG_FUNC Arg = &ARG_FUNC::EmptyArgs);
+	//Create instance without arguments
+	INSIDE_DATA CreateInstance() { return CreateInstance(nullptr, 0);}
 
-	virtual INSIDE_DATA CreateInstance(LPEXECUTE_CONTEXT Context, LPARG_FUNC Arg = &ARG_FUNC::EmptyArgs);
+	//Create instance by arg list
+	virtual INSIDE_DATA CreateInstance(LPINSIDE_DATA Args, NUMBER_ARG CountArg);
 
-	virtual INSIDE_DATA CreateInstance(LPEXECUTE_CONTEXT Context, void * Data);
+	//Create instance by internal represent class 
+	virtual INSIDE_DATA CreateInstance(void* InternalRepresentForClass);
 
 	//Debug info
 	virtual SIZE_STR InfoObject(INSTANCE_CLASS Obj, LPINTERNAL_CHAR Buffer, SIZE_STR LenInBuf);
@@ -251,6 +293,8 @@ public:
 	void SetAllInstanceToUnused();
 
 	void FreeAllUnusedInstance();
+
+	void MarkAllClassesAsUsed();
 
 	inline LPHEADER_CLASS operator[](const LPHEADER_STRING Id) { return GetClass(Id); }
 
